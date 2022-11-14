@@ -1,17 +1,17 @@
-from os import (
-    system as _runCommand,
-    name as _operationalSystem
-)
+from os import name as _operationalSystem
+from os import system as _runCommand
 
 _WINDOWS = 'nt'
 _THICK_BORDER = '========================================================'
 _THIN_BORDER = '--------------------------------------------------------'
 
-def clearScreen(): 
+
+def clearScreen():
     if _operationalSystem == _WINDOWS:
         _runCommand('cls')
     else:
         _runCommand('clear')
+
 
 def renderMainMenu():
     print(_THICK_BORDER)
@@ -19,6 +19,7 @@ def renderMainMenu():
     print(_THICK_BORDER)
     _renderMainMenuOptions()
     print(_THICK_BORDER)
+
 
 def _renderMainMenuOptions():
     print('1 - GERAR NOVO GRAFO')
@@ -31,6 +32,7 @@ def _renderMainMenuOptions():
     print('8 - EXECUTAR ALGORITMOS')
     print('0 - SAIR DO PROGRAMA')
 
+
 def generateGraphMenu():
     print(_THICK_BORDER)
     print('      SELECIONE A ACAO DESEJADA')
@@ -39,6 +41,7 @@ def generateGraphMenu():
     print('2 - GERAR GRAFO NAO DIRECIONADO')
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
     print(_THICK_BORDER)
+
 
 def addEdgeMenu():
     print(_THICK_BORDER)
@@ -51,25 +54,30 @@ def removeEdgeMenu():
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
     print(_THICK_BORDER)
 
-def checkEdgeExistenceMenu():
+
+def hasEdgeMenu():
     print(_THICK_BORDER)
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
     print(_THICK_BORDER)
+
 
 def showGraphMenu():
     print(_THICK_BORDER)
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
     print(_THICK_BORDER)
 
+
 def showEdgeAndNodesLengthMenu():
     print(_THICK_BORDER)
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
     print(_THICK_BORDER)
 
+
 def checkNodeDegreeMenu():
     print(_THICK_BORDER)
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
     print(_THICK_BORDER)
+
 
 def runAlgorithmsMenu():
     print(_THICK_BORDER)
