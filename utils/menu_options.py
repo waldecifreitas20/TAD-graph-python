@@ -1,1 +1,1 @@
-MAIN_MENU_OPTIONS = {option for option in range(9)}
+MAIN_MENU_OPTIONS = {f'{option}' for option in range(9)}
