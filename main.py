@@ -1,10 +1,13 @@
 from controllers import view_controller as controllers
-from utils import checkers as check
+from utils import checkers as checker
+from utils.menu_options import MAIN_MENU_OPTIONS
 from views import menu as VIEWS
 
 MENU_OPTION = -1
 
+
 while MENU_OPTION != 0:
+    VIEWS.clearScreen()
     VIEWS.renderMainMenu()
     MENU_OPTION = input('ESCOLHA UMA OPCAO: ')
 
@@ -12,7 +15,7 @@ while MENU_OPTION != 0:
     if (MENU_OPTION == '0'):
         break
 
-    if (check.isValidMenuOption(MENU_OPTION)):
+    if (checker.isValidMenuOption(MENU_OPTION, MAIN_MENU_OPTIONS)):
         (view, controller) = controllers.getViewController(MENU_OPTION, VIEWS)
         controller(view)
     else:
