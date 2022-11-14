@@ -5,7 +5,6 @@ from views import menu as VIEWS
 
 MENU_OPTION = -1
 
-
 while MENU_OPTION != 0:
     VIEWS.clearScreen()
     VIEWS.renderMainMenu()

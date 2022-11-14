@@ -32,7 +32,6 @@ def _renderMainMenuOptions():
     print('8 - EXECUTAR ALGORITMOS')
     print('0 - SAIR DO PROGRAMA')
 
-
 def generateGraphMenu():
     print(_THICK_BORDER)
     print('      SELECIONE A ACAO DESEJADA')
@@ -42,10 +41,19 @@ def generateGraphMenu():
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
     print(_THICK_BORDER)
 
-
-def addEdgeMenu():
+def generateDirectionedGraphMenu():
     print(_THICK_BORDER)
-    print('INSIRA')
+    print('      SELECIONE A ACAO DESEJADA')
+    print(_THICK_BORDER)
+    print('1 - ')
+    print('2 - GERAR GRAFO NAO DIRECIONADO')
+    print('0 - VOLTAR PARA O MENU PRINCIPAL')
+    print(_THICK_BORDER)
+
+
+def addEdgeMenu(nodeSourceName = ''):
+    print(_THICK_BORDER)
+    print(f'INSIRA O VALOR DO NO {nodeSourceName.upper()}')
     print(_THICK_BORDER)
 
 
