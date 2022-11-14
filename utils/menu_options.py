@@ -1,0 +1,1 @@
+MAIN_MENU_OPTIONS = {option for option in range(9)}
