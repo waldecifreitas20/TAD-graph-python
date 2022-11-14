@@ -1,5 +1,17 @@
+from os import (
+    system as runCommand,
+    name as operationalSystem
+)
+
+WINDOWS = 'nt'
 THICK_BORDER = '========================================================'
 THIN_BORDER = '--------------------------------------------------------'
+
+def clearScreen(): 
+    if operationalSystem == WINDOWS:
+        runCommand('cls')
+    else:
+        runCommand('clear')
 
 def renderMainMenu():
     print(THICK_BORDER)
