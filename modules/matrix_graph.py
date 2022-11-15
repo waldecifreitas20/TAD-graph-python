@@ -19,8 +19,31 @@ class MatrixGraph(Graph):
         return edges
 #   @Override
     def addEdge(self, fromNode, toNode):
-        # TODO
-        pass
+         # CHECA SE OS VERTICES EXISTEM NO GRAFO
+        if(not self.hasNode(fromNode) or not self.hasNode(toNode)):
+            raise Exception('AMBOS OS VERTICES DEVEM FAZER PARTE DO GRAFO!')
+
+        # CHECA SE A ARESTA JA EXISTE NO GRAFO
+        if(self.hasEdge(fromNode, toNode)):
+            raise Exception(
+                'NAO EH POSSIVEL ADCIONAR UMA ARESTA JA EXISTENTE!')
+
+        origin = self.getNodeId(fromNode)
+        destiny = self.getNodeId(toNode)
+
+        self.edges[origin][destiny] = 1
+        self.edges[destiny][origin] = 1
+        
+
+#   @Override
+    def hasEdge(self, fromNode, toNode):
+        origin = self.getNodeId(fromNode)
+        destiny = self.getNodeId(toNode)
+
+        edge1 = self.edges[origin][destiny] == 1
+        edge2 = self.edges[destiny][origin] == 1
+        return edge1 and edge2
+    
 
     def printGraph(self):
         self._printNodeNameLine()
@@ -41,6 +64,3 @@ class MatrixGraph(Graph):
             print(f'---', end='')
         print()
         
-g = MatrixGraph(15)
-
-g.printGraph()

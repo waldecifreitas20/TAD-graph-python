@@ -8,7 +8,7 @@ class Graph:
     def _generateNodes(self, quantity) -> None:
         nodes = []
         for i in range(quantity):
-            node = self.Node(i)
+            node = self.Node(f'{i}')
             node.id = i
             nodes.append(node)
             
@@ -17,11 +17,15 @@ class Graph:
 
     def hasNode(self, value) -> bool:
         for node in self.nodes:
+            
             if node.value == value:
                 return True
-
         return False
 
+    def getNodeId(self, value):
+         for node in self.nodes:
+            if node.value == value:
+                return node.id
     def getNumberNodes(self) -> int: return len(self.nodes) 
     
     def getNumberEdges(self) -> int: return len(self.edges)
