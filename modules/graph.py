@@ -22,9 +22,9 @@ class Graph:
 
         return False
 
-    def getNumberNodes(self) -> int: len(self.nodes) 
+    def getNumberNodes(self) -> int: return len(self.nodes) 
     
-    def getNumberEdges(self) -> int: len(self.edges)
+    def getNumberEdges(self) -> int: return len(self.edges)
 
 #   @abstract
     def addEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
