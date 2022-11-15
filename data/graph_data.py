@@ -1,6 +1,6 @@
 from modules.list_graph import *
 
-_graph = Graph
+_graph = None
 
 
 def saveGraph(graph=Graph):

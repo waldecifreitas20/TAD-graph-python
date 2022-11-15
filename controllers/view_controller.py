@@ -83,9 +83,9 @@ def generateGraphController(view):
                     elif (menuOption == '2'):
                         graph = DirectionedListGraph(numberNodes)
                     elif (menuOption == '3'):
-                        graph = ListGraph(numberNodes)
-                    elif (menuOption == '4'):
                         graph = MatrixGraph(numberNodes)
+                    elif (menuOption == '4'):
+                        graph = ListGraph(numberNodes)
 
                     appData.saveGraph(graph)
                     clearScreen()
@@ -98,25 +98,27 @@ def generateGraphController(view):
 
 
 def addEdgeController(view):
-    graph = Graph
-    while True:
-        runView(view)
-        fromNode = input('VERTICE ORIGEM: ')
-        toNode = input('VERTICE DESTINO: ')
+    graph = appData.getGraph()
+    if graph == None:
+        print('O GRAFO ESTA VAZIO. SELECIONE A PRIMEIRA OPCAO E GERE UM GRAFO')
+    else:
+        while True:
+            runView(view)
+            fromNode = input('VERTICE ORIGEM: ')
+            toNode = input('VERTICE DESTINO: ')
 
-        try:
-            graph = appData.getGraph()
-            graph.addEdge(fromNode, toNode)
-        except Exception as error:
-            clearScreen()
-            print(error)
-        finally:
-            keepOn = input('DESEJA ADCIONAR MAIS ARESTAS? (1 - SIM)\nR: ')
-            clearScreen()
-            if(keepOn != '1'):
-                break
+            try:
+                graph.addEdge(fromNode, toNode)
+            except Exception as error:
+                clearScreen()
+                print(error)
+            finally:
+                appData.saveGraph(graph)
+                keepOn = input('DESEJA ADCIONAR MAIS ARESTAS? (1 - SIM)\nR: ')
+                clearScreen()
+                if(keepOn != '1'):
+                    break
 
-    appData.saveGraph(graph)
 
 
 def removeEdgeController(view): pass
