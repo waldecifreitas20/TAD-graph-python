@@ -1,4 +1,5 @@
 from data import graph_data as appData
+from modules.directioned_graph import *
 from modules.graph import *
 from utils.checkers import isValidMenuOption
 from utils.menu_options import *
@@ -6,6 +7,7 @@ from views.menu import clearScreen
 
 
 def runView(view): return view()
+
 
 def getViewController(menuOption, views):
     if (menuOption == '1'):
@@ -56,33 +58,62 @@ def getViewController(menuOption, views):
             runAlgorithmsController
         )
 
-def generateGraphController(view):
-    MENU_OPTION = -1
 
-    while MENU_OPTION != 0:
+def generateGraphController(view):
+    menuOption = -1
+
+    while menuOption != 0:
         runView(view)
-        MENU_OPTION = input('SELECIONE UMA OPCAO: ')
+        menuOption = input('SELECIONE UMA OPCAO: ')
         clearScreen()
 
-        if(MENU_OPTION == '0'):
+        if (menuOption == '0'):
             break
 
-        if (isValidMenuOption(MENU_OPTION, GENERATE_GRAPH_MENU_OPTIONS)):
-                while True:
-                    try:
-                        numberNodes = int(input('DIGITE O NUMERO DE VERTICES DO GRAFO: ')) 
-                        if(MENU_OPTION == '1'):
-                            graph = Graph(numberNodes)
-                        else:
-                            graph = Graph(numberNodes)
-                        appData.saveGraph(graph)
-                        break                        
-                    except:
-                        clearScreen()
-                        print('DIGITE UMA OPCAO VALIDA')
-                  
+        if (isValidMenuOption(menuOption, GENERATE_GRAPH_MENU_OPTIONS)):
+            while True:
+                try:
+                    numberNodes = int(input('DIGITE O NUMERO DE VERTICES DO GRAFO: '))
+                    
+                    if (menuOption == '1'):
+                        graph = DirectionedGraph(numberNodes, isMatrix=True)
+                    elif (menuOption == '2'):
+                        graph = DirectionedGraph(numberNodes)
+                    elif (menuOption == '3'):
+                        graph = Graph(numberNodes, isMatrix=True)
+                    elif (menuOption == '4'):
+                        graph = Graph(numberNodes)
 
-def addEdgeController(view): pass
+                    appData.saveGraph(graph)
+                    clearScreen()
+                    return
+                except:
+                    clearScreen()
+                    print('DIGITE UMA OPCAO VALIDA')
+        else:
+            print('DIGITE UMA OPCAO VALIDA')
+
+def addEdgeController(view):
+    graph = Graph
+    while True:
+        runView(view)
+        fromNode = input('VERTICE ORIGEM: ')
+        toNode = input('VERTICE DESTINO: ')
+                
+        try:
+            graph = appData.getGraph()
+            graph.addNode(fromNode, toNode)
+        except Exception as error:
+            clearScreen()
+            print(error)
+        finally:
+            keepOn = input('DESEJA ADCIONAR MAIS ARESTAS? (1 - SIM)\nR: ')
+            clearScreen()
+            if(keepOn != '1'):
+                break
+
+    appData.saveGraph(graph)
+
 def removeEdgeController(view): pass
 def hasEdgeController(view): pass
 def showGraphController(view): pass
