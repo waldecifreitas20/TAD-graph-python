@@ -1,6 +1,7 @@
 class Graph:
 
-    def __init__(self, nodesNumber):
+    def __init__(self, nodesNumber, isMatrix=False):
+        self.isMatrix = isMatrix
         self.edges = []
         self.nodes = self._generateNodes(nodesNumber)
         self.nodesNumber = len(self.nodes)
@@ -10,8 +11,8 @@ class Graph:
         for i in range(quantity):
             node = self.Node(i)
             node.id = i
-        
             nodes.append(node)
+            
         return nodes
 
     def addEdge(self):pass
