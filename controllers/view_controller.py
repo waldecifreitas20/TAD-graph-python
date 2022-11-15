@@ -123,7 +123,13 @@ def addEdgeController(view):
 
 def removeEdgeController(view): pass
 def hasEdgeController(view): pass
-def showGraphController(view): pass
+
+def showGraphController(view): 
+    graph = appData.getGraph()
+    graph.printGraph()
+    input('\nAPERTE ENTER PARA CONTINAR')
+    clearScreen()
+
 def showEdgeAndNodesController(view): pass
 def checkNodeDegreeController(view): pass
 def runAlgorithmsController(view): pass
