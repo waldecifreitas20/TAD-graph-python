@@ -15,9 +15,17 @@ class Graph:
             
         return nodes
 
-    def addEdge(self):pass
-    def removeEdge(self):pass
-    def removeEdge(self):pass
+    def addEdge(self, fromNode, toNode): pass
+    def removedge(self, fromNode, toNode): pass
+
+    def hasNode(self, value):
+        for node in self.nodes:
+            if node.value == value:
+                return True
+
+        return True
+
+    def hasEdge(self, fromNode, toNode): pass
 
 
     class Node:
@@ -31,3 +39,6 @@ class Graph:
         def __init__(self, fromNode, toNode):
             self.toNode = toNode
             self.fromNode = fromNode
+
+g = Graph(10)
+print(g.hasNode(0))
