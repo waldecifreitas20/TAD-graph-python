@@ -1,4 +1,7 @@
-from modules.graph import *
+if __name__ == '__main__':
+    from graph import *
+else:
+    from modules.graph import *
 
 class MatrixGraph(Graph):
 
@@ -6,15 +9,38 @@ class MatrixGraph(Graph):
         super().__init__(numberNodes)
         self.edges = self._initEdges(numberNodes)
 
-    def _initEdges(numberNodes):
+    def _initEdges(self,numberNodes):
         edges = []
 
         for line in range(numberNodes):
             edges.append([])
             for column in range(numberNodes):
-                edges[line][column] = 0
-
+                edges[line].append(0)
+        return edges
 #   @Override
     def addEdge(self, fromNode, toNode):
         # TODO
         pass
+
+    def printGraph(self):
+        self._printNodeNameLine()
+        for line in range(self.getNumberNodes()):
+            node = self.nodes[line].value
+            print(f'{node}| ', end='')
+            for column in range(self.getNumberNodes()):
+                edge = self.edges[line][column]
+                print(f'{edge} ', end='')
+            print()
+
+    def _printNodeNameLine(self):
+        print('   ', end='')
+        for i in range(self.getNumberNodes()):
+            print(f'{self.nodes[i].value} ', end='')
+        print()
+        for i in range(self.getNumberNodes()):
+            print(f'---', end='')
+        print()
+        
+g = MatrixGraph(15)
+
+g.printGraph()

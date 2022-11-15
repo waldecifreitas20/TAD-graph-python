@@ -29,9 +29,7 @@ class ListGraph(Graph):
     def removeEdge(self, fromNode, toNode): pass
 #   @Override
     def hasEdge(self, fromNode, toNode):
-
         for edge in self.edges:
             if edge.fromNode == fromNode and edge.toNode == toNode:
                 return True
-
         return False
