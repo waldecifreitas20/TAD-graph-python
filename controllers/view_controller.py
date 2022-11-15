@@ -1,6 +1,8 @@
 from data import graph_data as appData
-from modules.directioned_graph import *
-from modules.graph import *
+from modules.list_graph import *
+from modules.list_directioned_graph import *
+from modules.matrix_graph import *
+from modules.matrix_directioned_graph import *
 from utils.checkers import isValidMenuOption
 from utils.menu_options import *
 from views.menu import clearScreen
@@ -73,16 +75,17 @@ def generateGraphController(view):
         if (isValidMenuOption(menuOption, GENERATE_GRAPH_MENU_OPTIONS)):
             while True:
                 try:
-                    numberNodes = int(input('DIGITE O NUMERO DE VERTICES DO GRAFO: '))
-                    
+                    numberNodes = int(
+                        input('DIGITE O NUMERO DE VERTICES DO GRAFO: '))
+
                     if (menuOption == '1'):
-                        graph = DirectionedGraph(numberNodes, isMatrix=True)
+                        graph = DirectionedMatrixGraph(numberNodes)
                     elif (menuOption == '2'):
-                        graph = DirectionedGraph(numberNodes)
+                        graph = DirectionedListGraph(numberNodes)
                     elif (menuOption == '3'):
-                        graph = Graph(numberNodes, isMatrix=True)
+                        graph = ListGraph(numberNodes)
                     elif (menuOption == '4'):
-                        graph = Graph(numberNodes)
+                        graph = MatrixGraph(numberNodes)
 
                     appData.saveGraph(graph)
                     clearScreen()
@@ -93,16 +96,17 @@ def generateGraphController(view):
         else:
             print('DIGITE UMA OPCAO VALIDA')
 
+
 def addEdgeController(view):
     graph = Graph
     while True:
         runView(view)
         fromNode = input('VERTICE ORIGEM: ')
         toNode = input('VERTICE DESTINO: ')
-                
+
         try:
             graph = appData.getGraph()
-            graph.addNode(fromNode, toNode)
+            graph.addEdge(fromNode, toNode)
         except Exception as error:
             clearScreen()
             print(error)
@@ -113,6 +117,7 @@ def addEdgeController(view):
                 break
 
     appData.saveGraph(graph)
+
 
 def removeEdgeController(view): pass
 def hasEdgeController(view): pass
