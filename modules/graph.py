@@ -26,14 +26,14 @@ class Graph:
     
     def getNumberEdges(self) -> int: len(self.edges)
 
-    # Metodos abstratos
-    def addEdge(self, fromNode, toNode): pass
-    def removedge(self, fromNode, toNode): pass
-    def hasEdge(self, fromNode, toNode): pass
+#   @abstract
+    def addEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
+    def removedge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
+    def hasEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
 
-    def nodeDegree(self, value) -> int: pass
+    def nodeDegree(self, value) -> int: raise Exception('Abstract method must be implemented')
 
-    def printGraph(self) -> None: pass
+    def printGraph(self) -> None: raise Exception('Abstract method must be implemented')
 
     def printNodes(self) -> None:
         print('[', end='') 

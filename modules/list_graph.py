@@ -9,6 +9,7 @@ class ListGraph(Graph):
     def __init__(self, numberNodes) -> None:
         super().__init__(numberNodes)
 
+#   @Override
     def addEdge(self, fromNode, toNode):
         # CHECA SE OS VERTICES EXISTEM NO GRAFO
         if(not self.hasNode(fromNode) or not self.hasNode(toNode)):
@@ -22,10 +23,11 @@ class ListGraph(Graph):
         # ADCIONA A NOVA ARESTA
         self.edges.append(self.Edge(fromNode, toNode))
 
+#   @Override
     def removeEdge(self, node): pass
+#   @Override
     def removeEdge(self, fromNode, toNode): pass
-
-    # Override
+#   @Override
     def hasEdge(self, fromNode, toNode):
 
         for edge in self.edges:

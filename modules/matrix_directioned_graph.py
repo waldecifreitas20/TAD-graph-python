@@ -4,7 +4,6 @@ else:
     from modules.matrix_graph import *
 
 
-
 class DirectionedMatrixGraph(MatrixGraph):
 
     def __init__(self, nodesNumber):
