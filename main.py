@@ -5,8 +5,11 @@ from views import menu as VIEWS
 
 MENU_OPTION = -1
 
+VIEWS.clearScreen()
+# TELA DE GERAR GRAFO
+controllers.generateGraphController(VIEWS.generateGraphMenu)
+
 while MENU_OPTION != 0:
-    VIEWS.clearScreen()
     VIEWS.renderMainMenu()
     MENU_OPTION = input('ESCOLHA UMA OPCAO: ')
 
@@ -19,6 +22,7 @@ while MENU_OPTION != 0:
         controller(view) # Controlador de acoes da view selecionada
     else:
         print('ESCOLHA UMA OPCAO VALIDA! DE 0 ATE 8')
+
 
 VIEWS.clearScreen()
 print('OBRIGADO!')
