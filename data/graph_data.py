@@ -1,4 +1,4 @@
-from modules.graph import *
+from modules.list_graph import *
 
 _graph = Graph
 
