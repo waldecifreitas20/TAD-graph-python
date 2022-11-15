@@ -32,28 +32,24 @@ def _renderMainMenuOptions():
     print('8 - EXECUTAR ALGORITMOS')
     print('0 - SAIR DO PROGRAMA')
 
+
 def generateGraphMenu():
     print(_THICK_BORDER)
     print('      SELECIONE A ACAO DESEJADA')
     print(_THICK_BORDER)
-    print('1 - GERAR GRAFO DIRECIONADO')
-    print('2 - GERAR GRAFO NAO DIRECIONADO')
-    print('0 - VOLTAR PARA O MENU PRINCIPAL')
-    print(_THICK_BORDER)
-
-def generateDirectionedGraphMenu():
-    print(_THICK_BORDER)
-    print('      SELECIONE A ACAO DESEJADA')
-    print(_THICK_BORDER)
-    print('1 - ')
-    print('2 - GERAR GRAFO NAO DIRECIONADO')
+    print('1 - GERAR GRAFO DIRECIONADO (MATRIZ)')
+    print('2 - GERAR GRAFO DIRECIONADO (LISTA DE ADJACENCIAS)')
+    print('3 - GERAR GRAFO NAO DIRECIONADO (MATRIZ)')
+    print('4 - GERAR GRAFO NAO DIRECIONADO (LISTA DE ADJACENCIAS)')
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
     print(_THICK_BORDER)
 
 
-def addEdgeMenu(nodeSourceName = ''):
+def addEdgeMenu():
     print(_THICK_BORDER)
-    print(f'INSIRA O VALOR DO NO {nodeSourceName.upper()}')
+    print('INSIRA OS VERTICES DA ARESTA')
+    print(_THIN_BORDER)
+    print('OBS: OS VERTICES PODEM POSSUIR QUALQUER TIPO DE DADO (LETRA, NUMERO, SIMBOLO, ETC)')
     print(_THICK_BORDER)
 
 
