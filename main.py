@@ -16,7 +16,7 @@ while MENU_OPTION != 0:
 
     if (checker.isValidMenuOption(MENU_OPTION, MAIN_MENU_OPTIONS)):
         (view, controller) = controllers.getViewController(MENU_OPTION, VIEWS)
-        controller(view)
+        controller(view) # Controlador de acoes da view selecionada
     else:
         print('ESCOLHA UMA OPCAO VALIDA! DE 0 ATE 8')
 
