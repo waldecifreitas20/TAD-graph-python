@@ -114,12 +114,11 @@ def addEdgeController(view):
                 print(error)
             finally:
                 appData.saveGraph(graph)
+                print('ARESTA ADICIONADA COM SUCESSO!')
                 keepOn = input('DESEJA ADCIONAR MAIS ARESTAS? (1 - SIM)\nR: ')
                 clearScreen()
                 if(keepOn != '1'):
                     break
-
-
 
 def removeEdgeController(view): pass
 def hasEdgeController(view): pass
