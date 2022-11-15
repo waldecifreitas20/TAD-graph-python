@@ -1,7 +1,13 @@
-_graph = any
+from modules.graph import *
 
-def saveGraph(graph) :
+_graph = Graph
+
+
+def saveGraph(graph=Graph):
     global _graph
     _graph = graph
 
-def getGraph(): return _graph
+
+def getGraph() -> Graph:
+    global _graph
+    return _graph
