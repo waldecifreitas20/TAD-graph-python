@@ -1,7 +1,7 @@
-from modules.list_graph import Graph
+from modules.list_graph import *
 
 
-class DirectionedListGraph(Graph):
+class DirectionedListGraph(ListGraph):
 
-    def __init__(self, nodesNumber, isMatrix=False):
-        super().__init__(nodesNumber, isMatrix)
+    def __init__(self, nodesNumber):
+        super().__init__(nodesNumber)
