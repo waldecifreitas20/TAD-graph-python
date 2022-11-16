@@ -96,7 +96,6 @@ def generateGraphController(view):
         else:
             print('DIGITE UMA OPCAO VALIDA')
 
-
 def addEdgeController(view):
     graph = appData.getGraph()
     if graph == None:
@@ -109,12 +108,12 @@ def addEdgeController(view):
 
             try:
                 graph.addEdge(fromNode, toNode)
+                appData.saveGraph(graph)
+                print('ARESTA ADICIONADA COM SUCESSO!')
             except Exception as error:
                 clearScreen()
                 print(error)
             finally:
-                appData.saveGraph(graph)
-                print('ARESTA ADICIONADA COM SUCESSO!')
                 keepOn = input('DESEJA ADCIONAR MAIS ARESTAS? (1 - SIM)\nR: ')
                 clearScreen()
                 if(keepOn != '1'):

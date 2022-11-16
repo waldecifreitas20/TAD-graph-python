@@ -19,17 +19,39 @@ class ListGraph(Graph):
         if(self.hasEdge(fromNode, toNode)):
             raise Exception(
                 'NAO EH POSSIVEL ADCIONAR UMA ARESTA JA EXISTENTE!')
+        
+        origin = self.getNode(fromNode)
+        destiny = self.getNode(toNode)
 
         # ADCIONA A NOVA ARESTA
-        self.edges.append(self.Edge(fromNode, toNode))
+        self.edges.append(self.Edge(origin, destiny))
+        self.edges.append(self.Edge(destiny, origin))
 
 #   @Override
     def removeEdge(self, node): pass
+
 #   @Override
     def removeEdge(self, fromNode, toNode): pass
+
 #   @Override
     def hasEdge(self, fromNode, toNode):
         for edge in self.edges:
-            if edge.fromNode == fromNode and edge.toNode == toNode:
+            if edge.fromNode.value == fromNode and edge.toNode.value == toNode:
                 return True
         return False
+
+#   @Override
+    def printGraph(self):
+        for node in self.nodes:
+            print(node.value, end=' -> ')
+            for adjacent in self.getAdjacentsFrom(node.value):
+                print(adjacent,end= ' -> ')
+            print('null')
+
+g = ListGraph(5)
+g.addEdge('1','4')
+g.addEdge('1','2')
+g.addEdge('1','3')
+g.addEdge('0','2')
+g.addEdge('2','2')
+g.printGraph()

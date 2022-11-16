@@ -17,10 +17,14 @@ class Graph:
 
     def hasNode(self, value) -> bool:
         for node in self.nodes:
-            
             if node.value == value:
                 return True
         return False
+
+    def getNode(self, value):
+         for node in self.nodes:
+            if node.value == value:
+                return node
 
     def getNodeId(self, value):
          for node in self.nodes:
@@ -29,6 +33,15 @@ class Graph:
     def getNumberNodes(self) -> int: return len(self.nodes) 
     
     def getNumberEdges(self) -> int: return len(self.edges)
+
+    def getAdjacentsFrom(self,value):
+        adjacents = []
+        for edge in self.edges:
+            if edge.fromNode.value == value:
+                adjacents.append(edge.toNode.value)
+        adjacents.sort()
+        return adjacents
+    
 
 #   @abstract
     def addEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
