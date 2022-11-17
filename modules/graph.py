@@ -44,7 +44,7 @@ class Graph:
     
 
 #   @abstract
-    def addEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
+    def addEdge(self, fromNode, toNode, weight=1): raise Exception('Abstract method must be implemented')
     def removedge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
     def hasEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
 

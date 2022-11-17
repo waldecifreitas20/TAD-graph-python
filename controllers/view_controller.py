@@ -8,7 +8,7 @@ from utils.menu_options import *
 from views.menu import clearScreen
 
 
-def runView(view): return view()
+def renderView(view): return view()
 
 
 def getViewController(menuOption, views):
@@ -65,7 +65,7 @@ def generateGraphController(view):
     menuOption = -1
 
     while menuOption != 0:
-        runView(view)
+        renderView(view)
         menuOption = input('SELECIONE UMA OPCAO: ')
         clearScreen()
 
@@ -77,7 +77,8 @@ def generateGraphController(view):
                 try:
                     numberNodes = int(
                         input('DIGITE O NUMERO DE VERTICES DO GRAFO: '))
-
+                    
+                    # VERIFICA QUAL TIPO DE GRAFO GERAR
                     if (menuOption == '1'):
                         graph = DirectionedMatrixGraph(numberNodes)
                     elif (menuOption == '2'):
@@ -102,12 +103,13 @@ def addEdgeController(view):
         print('O GRAFO ESTA VAZIO. SELECIONE A PRIMEIRA OPCAO E GERE UM GRAFO')
     else:
         while True:
-            runView(view)
+            renderView(view)
             fromNode = input('VERTICE ORIGEM: ')
             toNode = input('VERTICE DESTINO: ')
+            edgeWeight = input('PESO DA ARESTA: ')
 
             try:
-                graph.addEdge(fromNode, toNode)
+                graph.addEdge(fromNode, toNode, edgeWeight)
                 appData.saveGraph(graph)
                 print('ARESTA ADICIONADA COM SUCESSO!')
             except Exception as error:

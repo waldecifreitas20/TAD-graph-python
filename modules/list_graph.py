@@ -10,7 +10,7 @@ class ListGraph(Graph):
         super().__init__(numberNodes)
 
 #   @Override
-    def addEdge(self, fromNode, toNode):
+    def addEdge(self, fromNode, toNode, weight=1):
         # CHECA SE OS VERTICES EXISTEM NO GRAFO
         if(not self.hasNode(fromNode) or not self.hasNode(toNode)):
             raise Exception('AMBOS OS VERTICES DEVEM FAZER PARTE DO GRAFO!')
@@ -24,8 +24,8 @@ class ListGraph(Graph):
         destiny = self.getNode(toNode)
 
         # ADCIONA A NOVA ARESTA
-        self.edges.append(self.Edge(origin, destiny))
-        self.edges.append(self.Edge(destiny, origin))
+        self.edges.append(self.Edge(origin, destiny, weight))
+        self.edges.append(self.Edge(destiny, origin, weight))
 
 #   @Override
     def removeEdge(self, node): pass
