@@ -10,22 +10,10 @@ class ListGraph(Graph):
         super().__init__(numberNodes)
 
 #   @Override
-    def addEdge(self, fromNode, toNode, weight=1):
-        # CHECA SE OS VERTICES EXISTEM NO GRAFO
-        if(not self.hasNode(fromNode) or not self.hasNode(toNode)):
-            raise Exception('AMBOS OS VERTICES DEVEM FAZER PARTE DO GRAFO!')
-
-        # CHECA SE A ARESTA JA EXISTE NO GRAFO
-        if(self.hasEdge(fromNode, toNode)):
-            raise Exception(
-                'NAO EH POSSIVEL ADCIONAR UMA ARESTA JA EXISTENTE!')
-        
-        origin = self.getNode(fromNode)
-        destiny = self.getNode(toNode)
-
+    def _addEdge(self, fromNode, toNode, weight=1):
         # ADCIONA A NOVA ARESTA
-        self.edges.append(self.Edge(origin, destiny, weight))
-        self.edges.append(self.Edge(destiny, origin, weight))
+        self.edges.append(self.Edge(fromNode, toNode, weight))
+        self.edges.append(self.Edge(toNode, fromNode, weight))
 
 #   @Override
     def removeEdge(self, node): pass
@@ -36,7 +24,7 @@ class ListGraph(Graph):
 #   @Override
     def hasEdge(self, fromNode, toNode):
         for edge in self.edges:
-            if edge.fromNode.value == fromNode and edge.toNode.value == toNode:
+            if edge.fromNode == fromNode and edge.toNode == toNode:
                 return True
         return False
 
@@ -48,10 +36,3 @@ class ListGraph(Graph):
                 print(adjacent,end= ' -> ')
             print('null')
 
-g = ListGraph(5)
-g.addEdge('1','4')
-g.addEdge('1','2')
-g.addEdge('1','3')
-g.addEdge('0','2')
-g.addEdge('2','2')
-g.printGraph()

@@ -8,7 +8,7 @@ class Graph:
     def _generateNodes(self, quantity) -> None:
         nodes = []
         for i in range(quantity):
-            node = self.Node(f'{i}')
+            node = self.Node(i)
             node.id = i
             nodes.append(node)
             
@@ -37,8 +37,8 @@ class Graph:
     def getAdjacentsFrom(self,value):
         adjacents = []
         for edge in self.edges:
-            if edge.fromNode.value == value:
-                adjacents.append(edge.toNode.value)
+            if edge.fromNode == value:
+                adjacents.append(edge.toNode)
         adjacents.sort()
         return adjacents
     
@@ -49,9 +49,20 @@ class Graph:
             print(f'{node.value}, ', end='')
         print('\\0]')
  
+    def addEdge(self, fromNode, toNode, weight=1): 
+        # CHECA SE OS VERTICES EXISTEM NO GRAFO
+        if(not self.hasNode(fromNode) or not self.hasNode(toNode)):
+            raise Exception('AMBOS OS VERTICES DEVEM FAZER PARTE DO GRAFO!')
+
+        # CHECA SE A ARESTA JA EXISTE NO GRAFO
+        if(self.hasEdge(fromNode, toNode)):
+            raise Exception(
+                'NAO EH POSSIVEL ADCIONAR UMA ARESTA JA EXISTENTE!')
+
+        self._addEdge(fromNode, toNode, weight)
 #   @abstract
     def printGraph(self) -> None: raise Exception('Abstract method must be implemented')
-    def addEdge(self, fromNode, toNode, weight=1): raise Exception('Abstract method must be implemented')
+    def _addEdge(self, fromNode, toNode, weight=1): raise Exception('Abstract method must be implemented')
     def removedge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
     def hasEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
     def nodeDegree(self, value) -> int: raise Exception('Abstract method must be implemented')

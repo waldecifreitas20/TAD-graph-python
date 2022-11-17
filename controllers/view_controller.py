@@ -104,12 +104,12 @@ def addEdgeController(view):
     else:
         while True:
             renderView(view)
-            fromNode = input('VERTICE ORIGEM: ')
-            toNode = input('VERTICE DESTINO: ')
-            edgeWeight = input('PESO DA ARESTA: ')
-            if(edgeWeight == '0'):
-                edgeWeight = '1'
             try:
+                fromNode = int(input('VERTICE ORIGEM: '))
+                toNode = int(input('VERTICE DESTINO: '))
+                edgeWeight = int(input('PESO DA ARESTA: '))
+                if(edgeWeight == '0'):
+                    edgeWeight = '1'
                 graph.addEdge(fromNode, toNode, edgeWeight)
                 appData.saveGraph(graph)
                 print('ARESTA ADICIONADA COM SUCESSO!')
