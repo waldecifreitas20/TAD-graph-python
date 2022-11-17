@@ -107,7 +107,8 @@ def addEdgeController(view):
             fromNode = input('VERTICE ORIGEM: ')
             toNode = input('VERTICE DESTINO: ')
             edgeWeight = input('PESO DA ARESTA: ')
-
+            if(edgeWeight == '0'):
+                edgeWeight = '1'
             try:
                 graph.addEdge(fromNode, toNode, edgeWeight)
                 appData.saveGraph(graph)
