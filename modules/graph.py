@@ -43,20 +43,19 @@ class Graph:
         return adjacents
     
 
-#   @abstract
-    def addEdge(self, fromNode, toNode, weight=1): raise Exception('Abstract method must be implemented')
-    def removedge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
-    def hasEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
-
-    def nodeDegree(self, value) -> int: raise Exception('Abstract method must be implemented')
-
-    def printGraph(self) -> None: raise Exception('Abstract method must be implemented')
-
     def printNodes(self) -> None:
         print('[', end='') 
         for node in self.nodes:
             print(f'{node.value}, ', end='')
-        print('\\0]') 
+        print('\\0]')
+ 
+#   @abstract
+    def printGraph(self) -> None: raise Exception('Abstract method must be implemented')
+    def addEdge(self, fromNode, toNode, weight=1): raise Exception('Abstract method must be implemented')
+    def removedge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
+    def hasEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
+    def nodeDegree(self, value) -> int: raise Exception('Abstract method must be implemented')
+
 
     class Node:
         id = int
