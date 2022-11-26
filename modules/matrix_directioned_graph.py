@@ -29,4 +29,9 @@ class DirectionedMatrixGraph(MatrixGraph):
     def hasEdge(self, fromNode, toNode):
         return  self.edges[fromNode][toNode] != 0
    
+    def getDegreeIn(self, value):
+        pass
+
+    def getDegreeOut(self, value):
+        pass
         

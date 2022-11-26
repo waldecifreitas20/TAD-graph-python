@@ -3,7 +3,7 @@ from modules.list_graph import *
 from modules.list_directioned_graph import *
 from modules.matrix_graph import *
 from modules.matrix_directioned_graph import *
-from utils.checkers import isValidMenuOption
+from utils.checkers import *
 from utils.menu_options import *
 from views.menu import clearScreen
 
@@ -186,9 +186,15 @@ def checkNodeDegreeMenuController(view):
         renderView(view)
         try:
             nodeValue = int(input('VERTICE: '))
-            nodeDegree = graph.getNodeDegree(nodeValue)
             clearScreen()
-            print(f'GRAU DO VERTICE {nodeValue}: {nodeDegree}')
+            if isDirectionedGraph(graph):
+                degreeIn = graph.getDegreeIn(nodeValue)
+                degreeOut = graph.getDegreeOut(nodeValue)
+                print(f'GRAU DE ENTRADA DO VERTICE {nodeValue}: {degreeIn}')
+                print(f'GRAU DE SAIDA DO VERTICE {nodeValue}: {degreeOut}')
+            else:
+                nodeDegree = graph.getNodeDegree(nodeValue)
+                print(f'GRAU DO VERTICE {nodeValue}: {nodeDegree}')
         except Exception as error:
             clearScreen()
             print(error)
