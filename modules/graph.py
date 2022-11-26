@@ -67,7 +67,6 @@ class Graph:
     def hasEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
     def nodeDegree(self, value) -> int: raise Exception('Abstract method must be implemented')
 
-
     class Node:
         id = int
         degree = int

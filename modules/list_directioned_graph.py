@@ -6,5 +6,6 @@ class DirectionedListGraph(ListGraph):
     def __init__(self, nodesNumber):
         super().__init__(nodesNumber)
 
-    def addEdge(self, fromNode, toNode, weight=1):
-        super().addEdge(fromNode, toNode, weight)
+#   @Override
+    def _addEdge(self, fromNode, toNode, weight=1):
+        self.edges.append(self.Edge(fromNode, toNode, weight))

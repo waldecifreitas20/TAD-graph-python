@@ -18,7 +18,7 @@ class MatrixGraph(Graph):
                 edges[line].append(0)
         return edges
 #   @Override
-    def addEdge(self, fromNode, toNode, weight=1):
+    def _addEdge(self, fromNode, toNode, weight=1):
         self.edges[fromNode][toNode] = weight
         self.edges[toNode][fromNode] = weight
         
