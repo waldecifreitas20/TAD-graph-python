@@ -45,24 +45,24 @@ def generateGraphMenu():
     print(_THICK_BORDER)
 
 
-def addEdgeMenu():
+def _edgesOperationsMenu():
     print(_THICK_BORDER)
     print('INSIRA OS VERTICES DA ARESTA')
     print(_THIN_BORDER)
-    print('OBS: OS VERTICES PODEM POSSUIR QUALQUER TIPO DE DADO (LETRA, NUMERO, SIMBOLO, ETC)')
+    print('OBS: OS VERTICES DEVEM SER NUMERICOS')
     print(_THICK_BORDER)
+
+
+def addEdgeMenu():
+    _edgesOperationsMenu()
 
 
 def removeEdgeMenu():
-    print(_THICK_BORDER)
-    print('0 - VOLTAR PARA O MENU PRINCIPAL')
-    print(_THICK_BORDER)
+    _edgesOperationsMenu()
 
 
 def hasEdgeMenu():
-    print(_THICK_BORDER)
-    print('0 - VOLTAR PARA O MENU PRINCIPAL')
-    print(_THICK_BORDER)
+    _edgesOperationsMenu()
 
 
 def showGraphMenu():
@@ -71,15 +71,12 @@ def showGraphMenu():
     print(_THICK_BORDER)
 
 
-def showEdgeAndNodesLengthMenu():
-    print(_THICK_BORDER)
-    print('0 - VOLTAR PARA O MENU PRINCIPAL')
-    print(_THICK_BORDER)
+def showEdgeAndNodesLengthMenu(): pass
 
 
 def checkNodeDegreeMenu():
     print(_THICK_BORDER)
-    print('0 - VOLTAR PARA O MENU PRINCIPAL')
+    print('INSIRA O VALOR DO NODE')
     print(_THICK_BORDER)
 
 
