@@ -147,7 +147,27 @@ def removeEdgeMenuController(view):
                     break
 
 
-def hasEdgeMenuController(view): pass
+def hasEdgeMenuController(view):
+    graph = appData.getGraph()
+    while True:
+        renderView(view)
+        try:
+            fromNode = int(input('VERTICE ORIGEM: '))
+            toNode = int(input('VERTICE DESTINO: '))
+            clearScreen()
+            if graph.hasEdge(fromNode, toNode):
+                print(f'A ARESTA {fromNode} -> {toNode} EXISTE NO GRAFO!')
+            else:
+                print(f'A ARESTA {fromNode} -> {toNode} NAO EXISTE NO GRAFO!')
+        except Exception as error:
+            clearScreen()
+            print(error)
+            print(f'A ARESTA {fromNode} -> {toNode} NAO EXISTE NO GRAFO!')
+        finally:
+            keepOn = input('DESEJA REALIZAR UMA NOVA CONSULTA? (1 - SIM)\nR: ')
+            clearScreen()
+            if(keepOn != '1'):
+                break
 
 
 def showGraphMenuController(view):
