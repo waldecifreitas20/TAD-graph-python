@@ -11,57 +11,57 @@ from views.menu import clearScreen
 def renderView(view): return view()
 
 
-def getViewController(menuOption, views):
+def getMenuViewController(menuOption, views):
     if (menuOption == '1'):
         return (
             views.generateGraphMenu,
-            generateGraphController,
+            generateGraphMenuController,
         )
 
     if (menuOption == '2'):
         return (
             views.addEdgeMenu,
-            addEdgeController,
+            addEdgeMenuController,
         )
 
     if (menuOption == '3'):
         return (
             views.removeEdgeMenu,
-            removeEdgeController
+            removeEdgeMenuController
         )
 
     if (menuOption == '4'):
         return (
             views.hasEdgeMenu,
-            hasEdgeController
+            hasEdgeMenuController
         )
 
     if (menuOption == '5'):
         return (
             views.showGraphMenu,
-            showGraphController
+            showGraphMenuController
         )
 
     if (menuOption == '6'):
         return (
             views.showEdgeAndNodesLengthMenu,
-            showEdgeAndNodesController
+            showEdgeAndNodesMenuController
         )
 
     if (menuOption == '7'):
         return (
             views.checkNodeDegreeMenu,
-            checkNodeDegreeController
+            checkNodeDegreeMenuController
         )
 
     if (menuOption == '8'):
         return (
             views.runAlgorithmsMenu,
-            runAlgorithmsController
+            runAlgorithmsMenuController
         )
 
 
-def generateGraphController(view):
+def generateGraphMenuController(view):
     menuOption = -1
 
     while menuOption != 0:
@@ -97,7 +97,7 @@ def generateGraphController(view):
         else:
             print('DIGITE UMA OPCAO VALIDA')
 
-def addEdgeController(view):
+def addEdgeMenuController(view):
     graph = appData.getGraph()
     if graph == None:
         print('O GRAFO ESTA VAZIO. SELECIONE A PRIMEIRA OPCAO E GERE UM GRAFO')
@@ -122,15 +122,15 @@ def addEdgeController(view):
                 if(keepOn != '1'):
                     break
 
-def removeEdgeController(view): pass
-def hasEdgeController(view): pass
+def removeEdgeMenuController(view): pass
+def hasEdgeMenuController(view): pass
 
-def showGraphController(view): 
+def showGraphMenuController(view): 
     graph = appData.getGraph()
     graph.printGraph()
     input('\nAPERTE ENTER PARA CONTINAR')
     clearScreen()
 
-def showEdgeAndNodesController(view): pass
-def checkNodeDegreeController(view): pass
-def runAlgorithmsController(view): pass
+def showEdgeAndNodesMenuController(view): pass
+def checkNodeDegreeMenuController(view): pass
+def runAlgorithmsMenuController(view): pass
