@@ -26,5 +26,7 @@ class DirectionedMatrixGraph(MatrixGraph):
                 edges[line].append(0)
         return edges
 
+    def hasEdge(self, fromNode, toNode):
+        return  self.edges[fromNode][toNode] != 0
    
         
