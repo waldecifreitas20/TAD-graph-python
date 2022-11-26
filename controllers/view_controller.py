@@ -135,6 +135,7 @@ def removeEdgeMenuController(view):
                 fromNode = int(input('VERTICE ORIGEM: '))
                 toNode = int(input('VERTICE DESTINO: '))
                 graph.removedge(fromNode, toNode)
+                appData.saveGraph(graph)
                 print('ARESTA REMOVIDA COM SUCESSO')
             except Exception as error:
                 clearScreen()
@@ -148,12 +149,34 @@ def removeEdgeMenuController(view):
 
 def hasEdgeMenuController(view): pass
 
-def showGraphMenuController(view): 
+
+def showGraphMenuController(view):
     graph = appData.getGraph()
     graph.printGraph()
     input('\nAPERTE ENTER PARA CONTINAR')
     clearScreen()
 
+
 def showEdgeAndNodesMenuController(view): pass
-def checkNodeDegreeMenuController(view): pass
+
+
+def checkNodeDegreeMenuController(view):
+    graph = appData.getGraph()
+    while True:
+        renderView(view)
+        try:
+            nodeValue = int(input('VERTICE: '))
+            nodeDegree = graph.getNodeDegree(nodeValue)
+            clearScreen()
+            print(f'GRAU DO VERTICE {nodeValue}: {nodeDegree}')
+        except Exception as error:
+            clearScreen()
+            print(error)
+        finally:
+            keepOn = input('DESEJA REALIZAR UMA NOVA CONSULTA? (1 - SIM)\nR: ')
+            clearScreen()
+            if(keepOn != '1'):
+                break
+
+
 def runAlgorithmsMenuController(view): pass

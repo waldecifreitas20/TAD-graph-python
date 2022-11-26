@@ -16,9 +16,7 @@ class ListGraph(Graph):
                 return edge
         raise Exception('Edges does not exist')
 
-
 #   @Override
-
     def _addEdge(self, fromNode, toNode, weight=1):
         # ADCIONA A NOVA ARESTA
         self.edges.append(self.Edge(fromNode, toNode, weight))
@@ -42,6 +40,9 @@ class ListGraph(Graph):
         return False
 
 #   @Override
+    def _getNodeDegree(self, value): return len(self.getAdjacentsFrom(value))
+
+#   @Override
     def printGraph(self):
         for node in self.nodes:
             print(node.value, end=' ')
@@ -49,3 +50,11 @@ class ListGraph(Graph):
                 weight = self.getEdge(node.value, adjacent).weight
                 print(f'-({weight})-> {adjacent}', end=f' ')
             print('-> null')
+
+    def getAdjacentsFrom(self,value):
+        adjacents = []
+        for edge in self.edges:
+            if edge.fromNode == value:
+                adjacents.append(edge.toNode)
+        adjacents.sort()
+        return adjacents

@@ -34,15 +34,6 @@ class Graph:
     
     def getNumberEdges(self) -> int: return len(self.edges)
 
-    def getAdjacentsFrom(self,value):
-        adjacents = []
-        for edge in self.edges:
-            if edge.fromNode == value:
-                adjacents.append(edge.toNode)
-        adjacents.sort()
-        return adjacents
-    
-
     def printNodes(self) -> None:
         print('[', end='') 
         for node in self.nodes:
@@ -72,6 +63,11 @@ class Graph:
                 'NAO EH POSSIVEL REMOVER UMA ARESTA INEXISTENTE!')
         self._removeEdge(fromNode, toNode)
         
+    def getNodeDegree(self, value) -> int: 
+        if(not self.hasNode(value)):
+            raise Exception(f'O VERTICE {value} NAO FAZ PARTE DO GRAFO!')
+        return self._getNodeDegree(value)
+
 #   @abstract
     def printGraph(self) -> None: raise Exception('Abstract method must be implemented')
     
@@ -79,7 +75,8 @@ class Graph:
     def _removeEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
 
     def hasEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
-    def nodeDegree(self, value) -> int: raise Exception('Abstract method must be implemented')
+    def _getNodeDegree(self, value) -> int:  raise Exception('Abstract method must be implemented')
+    
 
     class Node:
         id = int
