@@ -76,7 +76,7 @@ def showEdgeAndNodesLengthMenu(): pass
 
 def checkNodeDegreeMenu():
     print(_THICK_BORDER)
-    print('INSIRA O VALOR DO NODE')
+    print('INSIRA O VALOR DO NODE:')
     print(_THICK_BORDER)
 
 
