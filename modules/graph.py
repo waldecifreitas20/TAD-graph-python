@@ -70,20 +70,20 @@ class Graph:
         return self._getNodeDegree(value)
 
 #   @abstract
-    def printGraph(
-        self) -> None: raise Exception('Abstract method must be implemented')
+    def printGraph(self) -> None: 
+        raise Exception('Abstract method must be implemented')
 
-    def _addEdge(self, fromNode, toNode, weight=1): raise Exception(
-        'Abstract method must be implemented')
+    def _addEdge(self, fromNode, toNode, weight=1): 
+        raise Exception('Abstract method must be implemented')
 
-    def _removeEdge(self, fromNode, toNode): raise Exception(
-        'Abstract method must be implemented')
+    def _removeEdge(self, fromNode, toNode): 
+        raise Exception('Abstract method must be implemented')
 
-    def hasEdge(self, fromNode, toNode): raise Exception(
-        'Abstract method must be implemented')
+    def hasEdge(self, fromNode, toNode): 
+        raise Exception('Abstract method must be implemented')
 
-    def _getNodeDegree(
-        self, value) -> int: raise Exception('Abstract method must be implemented')
+    def _getNodeDegree(self, value) -> int: 
+        raise Exception('Abstract method must be implemented')
 
     class Node:
         id = int
