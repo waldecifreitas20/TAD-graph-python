@@ -77,7 +77,7 @@ def generateGraphMenuController(view):
                 try:
                     numberNodes = int(
                         input('DIGITE O NUMERO DE VERTICES DO GRAFO: '))
-                    
+
                     # VERIFICA QUAL TIPO DE GRAFO GERAR
                     if (menuOption == '1'):
                         graph = DirectionedMatrixGraph(numberNodes)
@@ -96,6 +96,7 @@ def generateGraphMenuController(view):
                     print('DIGITE UMA OPCAO VALIDA')
         else:
             print('DIGITE UMA OPCAO VALIDA')
+
 
 def addEdgeMenuController(view):
     graph = appData.getGraph()
@@ -122,7 +123,29 @@ def addEdgeMenuController(view):
                 if(keepOn != '1'):
                     break
 
-def removeEdgeMenuController(view): pass
+
+def removeEdgeMenuController(view):
+    graph = appData.getGraph()
+    if graph == None:
+        print('O GRAFO ESTA VAZIO. SELECIONE A PRIMEIRA OPCAO E GERE UM GRAFO')
+    else:
+        while True:
+            renderView(view)
+            try:
+                fromNode = int(input('VERTICE ORIGEM: '))
+                toNode = int(input('VERTICE DESTINO: '))
+                graph.removedge(fromNode, toNode)
+                print('ARESTA REMOVIDA COM SUCESSO')
+            except Exception as error:
+                clearScreen()
+                print(error)
+            finally:
+                keepOn = input('DESEJA REMOVAR MAIS ARESTAS? (1 - SIM)\nR: ')
+                clearScreen()
+                if(keepOn != '1'):
+                    break
+
+
 def hasEdgeMenuController(view): pass
 
 def showGraphMenuController(view): 
