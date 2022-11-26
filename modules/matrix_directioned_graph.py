@@ -14,7 +14,9 @@ class DirectionedMatrixGraph(MatrixGraph):
     def _addEdge(self, fromNode, toNode, weight=1):
         self.edges[fromNode][toNode] = weight
 
-   
+    def _removeEdge(self, fromNode, toNode):
+        self.edges[fromNode][toNode] = 0
+
     def _initEdges(self,numberNodes):
         edges = []
 

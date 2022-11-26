@@ -60,10 +60,22 @@ class Graph:
                 'NAO EH POSSIVEL ADCIONAR UMA ARESTA JA EXISTENTE!')
 
         self._addEdge(fromNode, toNode, weight)
+    def removedge(self, fromNode, toNode): 
+        # CHECA SE OS VERTICES EXISTEM NO GRAFO
+        if(not self.hasNode(fromNode) or not self.hasNode(toNode)):
+            raise Exception('AMBOS OS VERTICES DEVEM FAZER PARTE DO GRAFO!')
+
+        # CHECA SE A ARESTA JA EXISTE NO GRAFO
+        if(not self.hasEdge(fromNode, toNode)):
+            raise Exception(
+                'NAO EH POSSIVEL REMOVER UMA ARESTA INEXISTENTE!')
+        self._removeEdge(fromNode, toNode)
 #   @abstract
     def printGraph(self) -> None: raise Exception('Abstract method must be implemented')
+    
     def _addEdge(self, fromNode, toNode, weight=1): raise Exception('Abstract method must be implemented')
-    def removedge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
+    def _removeEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
+
     def hasEdge(self, fromNode, toNode): raise Exception('Abstract method must be implemented')
     def nodeDegree(self, value) -> int: raise Exception('Abstract method must be implemented')
 

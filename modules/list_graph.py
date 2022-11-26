@@ -19,7 +19,6 @@ class ListGraph(Graph):
 
 #   @Override
 
-
     def _addEdge(self, fromNode, toNode, weight=1):
         # ADCIONA A NOVA ARESTA
         self.edges.append(self.Edge(fromNode, toNode, weight))
@@ -29,7 +28,11 @@ class ListGraph(Graph):
     def removeEdge(self, node): pass
 
 #   @Override
-    def removeEdge(self, fromNode, toNode): pass
+    def removeEdge(self, fromNode, toNode):
+        for edge in self.edges:
+            if edge.fromNode == fromNode and edge.toNode == toNode:
+                return self.edges.remove(edge)
+        raise Exception('Edge does not exist')
 
 #   @Override
     def hasEdge(self, fromNode, toNode):

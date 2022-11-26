@@ -23,6 +23,9 @@ class MatrixGraph(Graph):
         self.edges[toNode][fromNode] = weight
         
 
+    def _removeEdge(self, fromNode, toNode):
+        self.edges[fromNode][toNode] = 0
+        self.edges[toNode][fromNode] = 0
 #   @Override
     def hasEdge(self, fromNode, toNode):
         edge1 = self.edges[fromNode][toNode] != 0
