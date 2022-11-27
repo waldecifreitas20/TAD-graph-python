@@ -64,8 +64,8 @@ class Graph:
         if(not self.hasEdge(fromNode, toNode)):
             raise Exception(
                 'NAO EH POSSIVEL REMOVER UMA ARESTA INEXISTENTE!')
-        self._removeEdge(fromNode, toNode)
         self._edgesLength -= 1
+        self._removeEdge(fromNode, toNode)
 
     def getNodeDegree(self, value) -> int:
         if(not self.hasNode(value)):
@@ -82,7 +82,7 @@ class Graph:
     def _removeEdge(self, fromNode, toNode): 
         raise Exception('Abstract method must be implemented')
 
-    def hasEdge(self, fromNode, toNode): 
+    def hasEdge(self, fromNode, toNode) -> bool: 
         raise Exception('Abstract method must be implemented')
 
     def _getNodeDegree(self, value) -> int: 
