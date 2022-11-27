@@ -190,6 +190,7 @@ def showEdgeAndNodesMenuController(view):
     print(F'{graph.getNumberNodes()} VERTICES E {graph.getNumberEdges()} ARESTAS')
     input('\nAPERTE ENTER PARA CONTINUAR...')
 
+
 def checkNodeDegreeMenuController(view):
     graph = appData.getGraph()
     while True:
@@ -214,5 +215,12 @@ def checkNodeDegreeMenuController(view):
             if(keepOn != '1'):
                 break
 
-def showAdjacentsMenuController(view): pass
+
+def showAdjacentsMenuController(view): 
+    graph = appData.getGraph()
+    while True:
+        renderView(view)
+        input()
+
+
 def runAlgorithmsMenuController(view): pass
