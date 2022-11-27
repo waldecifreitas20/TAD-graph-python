@@ -1,4 +1,6 @@
 from views.algorithms_menu import *
+from data import graph_data as appData
+from algorithms import *
 
 def renderView(view): return view(view)
 
@@ -33,16 +35,24 @@ def getAlgorithmViewController(option):
         )
 
 
-def classifyEdgesController(view): pass
-def hasCicleController(view): pass
-def topologicalSortingController(view): pass
-def strongerComponentsController(view): pass
+def classifyEdgesController(view): 
+    graph = appData.getGraph()
+def hasCicleController(view): 
+    graph = appData.getGraph()
+    
+def topologicalSortingController(view): 
+    graph = appData.getGraph()
+def strongerComponentsController(view): 
+    graph = appData.getGraph()
 
 
-def shortestPathController(view): pass
+def shortestPathController(view): 
+    graph = appData.getGraph()
 
 
-def minimalSpanningTreeController(view): pass
+def minimalSpanningTreeController(view): 
+    graph = appData.getGraph()
 
 
-def shortestPathToAllController(view): pass
+def shortestPathToAllController(view): 
+    graph = appData.getGraph()
