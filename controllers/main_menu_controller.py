@@ -5,63 +5,63 @@ from modules.matrix_graph import *
 from modules.matrix_directioned_graph import *
 from utils.checkers import *
 from utils.menu_options import *
-from views.menu import clearScreen
-
+from views.menu import *
+from controllers.algorithms_menu_controller import *
 
 def renderView(view): return view()
 
 
-def getMenuViewController(menuOption, views):
+def getMenuViewController(menuOption):
     if (menuOption == '1'):
         return (
-            views.generateGraphMenu,
+            generateGraphMenu,
             generateGraphMenuController,
         )
 
     if (menuOption == '2'):
         return (
-            views.addEdgeMenu,
+            addEdgeMenu,
             addEdgeMenuController,
         )
 
     if (menuOption == '3'):
         return (
-            views.removeEdgeMenu,
+            removeEdgeMenu,
             removeEdgeMenuController
         )
 
     if (menuOption == '4'):
         return (
-            views.hasEdgeMenu,
+            hasEdgeMenu,
             hasEdgeMenuController
         )
 
     if (menuOption == '5'):
         return (
-            views.showGraphMenu,
+            showGraphMenu,
             showGraphMenuController
         )
 
     if (menuOption == '6'):
         return (
-            views.showEdgeAndNodesLengthMenu,
+            showEdgeAndNodesLengthMenu,
             showEdgeAndNodesMenuController
         )
 
     if (menuOption == '7'):
         return (
-            views.checkNodeDegreeMenu,
+            checkNodeDegreeMenu,
             checkNodeDegreeMenuController
         )
 
     if (menuOption == '8'):
         return (
-            views.runAlgorithmsMenu,
+            runAlgorithmsMenu,
             runAlgorithmsMenuController
         )
     if (menuOption == '9'):
         return (
-            views.showAdjacentsMenu,
+            showAdjacentsMenu,
             showAdjacentsMenuController
         )
 
@@ -233,4 +233,5 @@ def showAdjacentsMenuController(view):
                 break
 
 
-def runAlgorithmsMenuController(view): pass
+def runAlgorithmsMenuController(view): 
+  pass
