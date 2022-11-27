@@ -8,50 +8,53 @@ class ListGraph(Graph):
 
     def __init__(self, numberNodes) -> None:
         super().__init__(numberNodes)
+        self.edges = []
+
+    def getEdge(self, fromNode, toNode):
+        for edge in self.edges:
+            if edge.fromNode == fromNode and edge.toNode == toNode:
+                return edge
+        raise Exception('Edges does not exist')
 
 #   @Override
-    def addEdge(self, fromNode, toNode):
-        # CHECA SE OS VERTICES EXISTEM NO GRAFO
-        if(not self.hasNode(fromNode) or not self.hasNode(toNode)):
-            raise Exception('AMBOS OS VERTICES DEVEM FAZER PARTE DO GRAFO!')
-
-        # CHECA SE A ARESTA JA EXISTE NO GRAFO
-        if(self.hasEdge(fromNode, toNode)):
-            raise Exception(
-                'NAO EH POSSIVEL ADCIONAR UMA ARESTA JA EXISTENTE!')
-        
-        origin = self.getNode(fromNode)
-        destiny = self.getNode(toNode)
-
+    def _addEdge(self, fromNode, toNode, weight=1):
         # ADCIONA A NOVA ARESTA
-        self.edges.append(self.Edge(origin, destiny))
-        self.edges.append(self.Edge(destiny, origin))
+        self.edges.append(self.Edge(fromNode, toNode, weight))
+        self.edges.append(self.Edge(toNode, fromNode, weight))
 
 #   @Override
     def removeEdge(self, node): pass
 
 #   @Override
-    def removeEdge(self, fromNode, toNode): pass
+    def _removeEdge(self, fromNode, toNode):
+        for edge in self.edges:
+            if edge.fromNode == fromNode and edge.toNode == toNode:
+                return self.edges.remove(edge)
+        raise Exception('Edge does not exist')
 
 #   @Override
     def hasEdge(self, fromNode, toNode):
         for edge in self.edges:
-            if edge.fromNode.value == fromNode and edge.toNode.value == toNode:
+            if edge.fromNode == fromNode and edge.toNode == toNode:
                 return True
         return False
 
 #   @Override
+    def _getNodeDegree(self, value): return len(self.getAdjacentsFrom(value))
+
+#   @Override
     def printGraph(self):
         for node in self.nodes:
-            print(node.value, end=' -> ')
+            print(node.value, end=' ')
             for adjacent in self.getAdjacentsFrom(node.value):
-                print(adjacent,end= ' -> ')
-            print('null')
+                weight = self.getEdge(node.value, adjacent).weight
+                print(f'-({weight})-> {adjacent}', end=f' ')
+            print('-> null')
 
-g = ListGraph(5)
-g.addEdge('1','4')
-g.addEdge('1','2')
-g.addEdge('1','3')
-g.addEdge('0','2')
-g.addEdge('2','2')
-g.printGraph()
+    def getAdjacentsFrom(self,value):
+        adjacents = []
+        for edge in self.edges:
+            if edge.fromNode == value:
+                adjacents.append(edge.toNode)
+        adjacents.sort()
+        return adjacents

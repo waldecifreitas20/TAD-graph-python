@@ -18,33 +18,29 @@ class MatrixGraph(Graph):
                 edges[line].append(0)
         return edges
 #   @Override
-    def addEdge(self, fromNode, toNode):
-         # CHECA SE OS VERTICES EXISTEM NO GRAFO
-        if(not self.hasNode(fromNode) or not self.hasNode(toNode)):
-            raise Exception('AMBOS OS VERTICES DEVEM FAZER PARTE DO GRAFO!')
-
-        # CHECA SE A ARESTA JA EXISTE NO GRAFO
-        if(self.hasEdge(fromNode, toNode)):
-            raise Exception(
-                'NAO EH POSSIVEL ADCIONAR UMA ARESTA JA EXISTENTE!')
-
-        origin = self.getNodeId(fromNode)
-        destiny = self.getNodeId(toNode)
-
-        self.edges[origin][destiny] = 1
-        self.edges[destiny][origin] = 1
+    def _addEdge(self, fromNode, toNode, weight=1):
+        self.edges[fromNode][toNode] = weight
+        self.edges[toNode][fromNode] = weight
         
 
+    def _removeEdge(self, fromNode, toNode):
+        self.edges[fromNode][toNode] = 0
+        self.edges[toNode][fromNode] = 0
 #   @Override
     def hasEdge(self, fromNode, toNode):
-        origin = self.getNodeId(fromNode)
-        destiny = self.getNodeId(toNode)
-
-        edge1 = self.edges[origin][destiny] == 1
-        edge2 = self.edges[destiny][origin] == 1
+        edge1 = self.edges[fromNode][toNode] != 0
+        edge2 = self.edges[toNode][fromNode] != 0
         return edge1 and edge2
     
-
+#   @Override
+    def _getNodeDegree(self, value):
+        degree = 0
+        for i in range(self.getNumberNodes()):
+            if self.edges[value][i] != 0:
+                degree += 1
+        return degree
+        
+#   @Override
     def printGraph(self):
         self._printNodeNameLine()
         for line in range(self.getNumberNodes()):

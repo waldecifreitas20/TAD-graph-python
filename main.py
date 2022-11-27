@@ -7,7 +7,7 @@ MENU_OPTION = -1
 
 VIEWS.clearScreen()
 # TELA DE GERAR GRAFO
-controllers.generateGraphController(VIEWS.generateGraphMenu)
+controllers.generateGraphMenuController(VIEWS.generateGraphMenu)
 
 while MENU_OPTION != 0:
     VIEWS.renderMainMenu()
@@ -18,8 +18,8 @@ while MENU_OPTION != 0:
         break
 
     if (checker.isValidMenuOption(MENU_OPTION, MAIN_MENU_OPTIONS)):
-        (view, controller) = controllers.getViewController(MENU_OPTION, VIEWS)
-        controller(view) # Controlador de acoes da view selecionada
+        (view, controller) = controllers.getMenuViewController(MENU_OPTION, VIEWS)
+        controller(view)  # Controlador de acoes da view selecionada
     else:
         print('ESCOLHA UMA OPCAO VALIDA! DE 0 ATE 8')
 

@@ -3,69 +3,69 @@ from modules.list_graph import *
 from modules.list_directioned_graph import *
 from modules.matrix_graph import *
 from modules.matrix_directioned_graph import *
-from utils.checkers import isValidMenuOption
+from utils.checkers import *
 from utils.menu_options import *
 from views.menu import clearScreen
 
 
-def runView(view): return view()
+def renderView(view): return view()
 
 
-def getViewController(menuOption, views):
+def getMenuViewController(menuOption, views):
     if (menuOption == '1'):
         return (
             views.generateGraphMenu,
-            generateGraphController,
+            generateGraphMenuController,
         )
 
     if (menuOption == '2'):
         return (
             views.addEdgeMenu,
-            addEdgeController,
+            addEdgeMenuController,
         )
 
     if (menuOption == '3'):
         return (
             views.removeEdgeMenu,
-            removeEdgeController
+            removeEdgeMenuController
         )
 
     if (menuOption == '4'):
         return (
             views.hasEdgeMenu,
-            hasEdgeController
+            hasEdgeMenuController
         )
 
     if (menuOption == '5'):
         return (
             views.showGraphMenu,
-            showGraphController
+            showGraphMenuController
         )
 
     if (menuOption == '6'):
         return (
             views.showEdgeAndNodesLengthMenu,
-            showEdgeAndNodesController
+            showEdgeAndNodesMenuController
         )
 
     if (menuOption == '7'):
         return (
             views.checkNodeDegreeMenu,
-            checkNodeDegreeController
+            checkNodeDegreeMenuController
         )
 
     if (menuOption == '8'):
         return (
             views.runAlgorithmsMenu,
-            runAlgorithmsController
+            runAlgorithmsMenuController
         )
 
 
-def generateGraphController(view):
+def generateGraphMenuController(view):
     menuOption = -1
 
     while menuOption != 0:
-        runView(view)
+        renderView(view)
         menuOption = input('SELECIONE UMA OPCAO: ')
         clearScreen()
 
@@ -78,6 +78,7 @@ def generateGraphController(view):
                     numberNodes = int(
                         input('DIGITE O NUMERO DE VERTICES DO GRAFO: '))
 
+                    # VERIFICA QUAL TIPO DE GRAFO GERAR
                     if (menuOption == '1'):
                         graph = DirectionedMatrixGraph(numberNodes)
                     elif (menuOption == '2'):
@@ -96,18 +97,21 @@ def generateGraphController(view):
         else:
             print('DIGITE UMA OPCAO VALIDA')
 
-def addEdgeController(view):
+
+def addEdgeMenuController(view):
     graph = appData.getGraph()
     if graph == None:
         print('O GRAFO ESTA VAZIO. SELECIONE A PRIMEIRA OPCAO E GERE UM GRAFO')
     else:
         while True:
-            runView(view)
-            fromNode = input('VERTICE ORIGEM: ')
-            toNode = input('VERTICE DESTINO: ')
-
+            renderView(view)
             try:
-                graph.addEdge(fromNode, toNode)
+                fromNode = int(input('VERTICE ORIGEM: '))
+                toNode = int(input('VERTICE DESTINO: '))
+                edgeWeight = int(input('PESO DA ARESTA: '))
+                if(edgeWeight == '0'):
+                    edgeWeight = '1'
+                graph.addEdge(fromNode, toNode, edgeWeight)
                 appData.saveGraph(graph)
                 print('ARESTA ADICIONADA COM SUCESSO!')
             except Exception as error:
@@ -119,15 +123,86 @@ def addEdgeController(view):
                 if(keepOn != '1'):
                     break
 
-def removeEdgeController(view): pass
-def hasEdgeController(view): pass
 
-def showGraphController(view): 
+def removeEdgeMenuController(view):
+    graph = appData.getGraph()
+    if graph == None:
+        print('O GRAFO ESTA VAZIO. SELECIONE A PRIMEIRA OPCAO E GERE UM GRAFO')
+    else:
+        while True:
+            renderView(view)
+            try:
+                fromNode = int(input('VERTICE ORIGEM: '))
+                toNode = int(input('VERTICE DESTINO: '))
+                graph.removedge(fromNode, toNode)
+                appData.saveGraph(graph)
+                print('ARESTA REMOVIDA COM SUCESSO')
+            except Exception as error:
+                clearScreen()
+                print(error)
+            finally:
+                keepOn = input('DESEJA REMOVAR MAIS ARESTAS? (1 - SIM)\nR: ')
+                clearScreen()
+                if(keepOn != '1'):
+                    break
+
+
+def hasEdgeMenuController(view):
+    graph = appData.getGraph()
+    while True:
+        renderView(view)
+        try:
+            fromNode = int(input('VERTICE ORIGEM: '))
+            toNode = int(input('VERTICE DESTINO: '))
+            clearScreen()
+            if graph.hasEdge(fromNode, toNode):
+                print(f'A ARESTA {fromNode} -> {toNode} EXISTE NO GRAFO!')
+            else:
+                print(f'A ARESTA {fromNode} -> {toNode} NAO EXISTE NO GRAFO!')
+        except Exception as error:
+            clearScreen()
+            print(error)
+            print(f'A ARESTA {fromNode} -> {toNode} NAO EXISTE NO GRAFO!')
+        finally:
+            keepOn = input('DESEJA REALIZAR UMA NOVA CONSULTA? (1 - SIM)\nR: ')
+            clearScreen()
+            if(keepOn != '1'):
+                break
+
+
+def showGraphMenuController(view):
     graph = appData.getGraph()
     graph.printGraph()
     input('\nAPERTE ENTER PARA CONTINAR')
     clearScreen()
 
-def showEdgeAndNodesController(view): pass
-def checkNodeDegreeController(view): pass
-def runAlgorithmsController(view): pass
+
+def showEdgeAndNodesMenuController(view): pass
+
+
+def checkNodeDegreeMenuController(view):
+    graph = appData.getGraph()
+    while True:
+        renderView(view)
+        try:
+            nodeValue = int(input('VERTICE: '))
+            clearScreen()
+            if isDirectionedGraph(graph):
+                degreeIn = graph.getDegreeIn(nodeValue)
+                degreeOut = graph.getDegreeOut(nodeValue)
+                print(f'GRAU DE ENTRADA DO VERTICE {nodeValue}: {degreeIn}')
+                print(f'GRAU DE SAIDA DO VERTICE {nodeValue}: {degreeOut}')
+            else:
+                nodeDegree = graph.getNodeDegree(nodeValue)
+                print(f'GRAU DO VERTICE {nodeValue}: {nodeDegree}')
+        except Exception as error:
+            clearScreen()
+            print(error)
+        finally:
+            keepOn = input('DESEJA REALIZAR UMA NOVA CONSULTA? (1 - SIM)\nR: ')
+            clearScreen()
+            if(keepOn != '1'):
+                break
+
+
+def runAlgorithmsMenuController(view): pass
