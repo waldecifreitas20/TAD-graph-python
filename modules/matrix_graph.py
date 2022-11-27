@@ -35,7 +35,7 @@ class MatrixGraph(Graph):
 #   @Override
     def _getNodeDegree(self, value):
         degree = 0
-        for i in self.nodes:
+        for i in range(self.getNumberNodes()):
             if self.edges[value][i] != 0:
                 degree += 1
         return degree

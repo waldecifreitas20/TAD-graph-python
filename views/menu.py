@@ -30,6 +30,7 @@ def _renderMainMenuOptions():
     print('6 - VER QUANTIDADE DE ARESTAS E VERTICES')
     print('7 - CHECAR GRAU DE UM VERTICE')
     print('8 - EXECUTAR ALGORITMOS')
+    print('9 - LISTA DE ADJACENCIAS')
     print('0 - SAIR DO PROGRAMA')
 
 

@@ -30,8 +30,23 @@ class DirectionedMatrixGraph(MatrixGraph):
         return  self.edges[fromNode][toNode] != 0
    
     def getDegreeIn(self, value):
-        pass
+        degree = 0
+        if not self.hasNode(value):
+            raise Exception('VERTICE NAO FAZ PARTE DO GRAFO')
+        
+        for i in range(self.getNumberNodes()):
+            if self.edges[i][value] != 0:
+                degree += 1
+        return degree
 
     def getDegreeOut(self, value):
-        pass
+        degree = 0
+        if not self.hasNode(value):
+            raise Exception('VERTICE NAO FAZ PARTE DO GRAFO')
+
+        for i in range(self.getNumberNodes()):
+            if self.edges[value][i] != 0:
+                degree += 1
+        return degree
+    
         
