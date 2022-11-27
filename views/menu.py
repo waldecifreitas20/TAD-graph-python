@@ -74,7 +74,7 @@ def showGraphMenu():
 
 def showEdgeAndNodesLengthMenu(): 
     print(_THICK_BORDER)
-    print('SELECIONE UMA OPCAO')
+    print('INFORMACOES')
     print(_THICK_BORDER)
 
 

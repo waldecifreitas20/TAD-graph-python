@@ -3,6 +3,7 @@ class Graph:
     def __init__(self, nodesNumber) -> None:
         self.nodes = self._generateNodes(nodesNumber)
         self.edges = []
+        self._edgesLength = 0
         self.nodesNumber = len(self.nodes)
 
     def _generateNodes(self, quantity) -> None:
@@ -32,7 +33,7 @@ class Graph:
 
     def getNumberNodes(self) -> int: return len(self.nodes)
 
-    def getNumberEdges(self) -> int: return len(self.edges)
+    def getNumberEdges(self) -> int: return self._edgesLength
 
     def printNodes(self) -> None:
         print('[', end='')
@@ -51,6 +52,7 @@ class Graph:
                 'NAO EH POSSIVEL ADCIONAR UMA ARESTA JA EXISTENTE!')
         if weight == 0:
             weight = 1
+        self._edgesLength += 1
         self._addEdge(fromNode, toNode, weight)
 
     def removedge(self, fromNode, toNode):
@@ -63,6 +65,7 @@ class Graph:
             raise Exception(
                 'NAO EH POSSIVEL REMOVER UMA ARESTA INEXISTENTE!')
         self._removeEdge(fromNode, toNode)
+        self._edgesLength -= 1
 
     def getNodeDegree(self, value) -> int:
         if(not self.hasNode(value)):

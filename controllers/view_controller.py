@@ -59,6 +59,11 @@ def getMenuViewController(menuOption, views):
             views.runAlgorithmsMenu,
             runAlgorithmsMenuController
         )
+    if (menuOption == '9'):
+        return (
+            views.showAdjacentsMenu,
+            showAdjacentsMenuController
+        )
 
 
 def generateGraphMenuController(view):
@@ -177,8 +182,13 @@ def showGraphMenuController(view):
     clearScreen()
 
 
-def showEdgeAndNodesMenuController(view): pass
-
+def showEdgeAndNodesMenuController(view): 
+    graph = appData.getGraph()
+    clearScreen()
+    renderView(view)
+    print('O GRAFO ATUAL CONTEM: ')
+    print(F'{graph.getNumberNodes()} VERTICES E {graph.getNumberEdges()} ARESTAS')
+    input('\nAPERTE ENTER PARA CONTINUAR...')
 
 def checkNodeDegreeMenuController(view):
     graph = appData.getGraph()
@@ -204,5 +214,5 @@ def checkNodeDegreeMenuController(view):
             if(keepOn != '1'):
                 break
 
-
+def showAdjacentsMenuController(view): pass
 def runAlgorithmsMenuController(view): pass
