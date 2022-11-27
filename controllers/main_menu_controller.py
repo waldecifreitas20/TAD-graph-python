@@ -5,8 +5,9 @@ from modules.matrix_graph import *
 from modules.matrix_directioned_graph import *
 from utils.checkers import *
 from utils.menu_options import *
-from views.menu import *
+from views.main_menu import *
 from controllers.algorithms_menu_controller import *
+
 
 def renderView(view): return view()
 
@@ -233,5 +234,16 @@ def showAdjacentsMenuController(view):
                 break
 
 
-def runAlgorithmsMenuController(view): 
-  pass
+def runAlgorithmsMenuController(view):
+    while True:
+        renderView(view)
+        try:
+            option = int(input('ESCOLHA UMA OPCAO: '))
+            if option == 0:
+                break
+            view, controller = getAlgorithmViewController(option)
+            controller(view)
+        except Exception as error:
+            clearScreen()
+            print('ESCOLHA UMA OPCAO VALIDA!')
+    clearScreen()

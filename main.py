@@ -1,7 +1,7 @@
 from controllers import main_menu_controller as controllers
 from utils import checkers as checker
 from utils.menu_options import MAIN_MENU_OPTIONS
-from views import menu as VIEWS
+from views import main_menu as VIEWS
 
 MENU_OPTION = -1
 

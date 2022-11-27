@@ -103,7 +103,7 @@ def runAlgorithmsMenu():
     print('    6 - ARVORE GERADORA MINIMA')
     print(_THIN_BORDER)
     print('# - ALGORITMO DIJKSTRA')
-    print('    6 - CAMINHO MINIMO DE UM VERTICE PARA QUALQUER OUTRO')
+    print('    7 - CAMINHO MINIMO DE UM VERTICE PARA QUALQUER OUTRO')
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
     print(_THICK_BORDER)
 
