@@ -45,7 +45,7 @@ class MatrixGraph(Graph):
         adjacents = []
         for i in range(self.getNumberNodes()):
             if self.edges[value][i] != 0:
-                adjacents.append(self.edges[i][value])
+                adjacents.append(i)
         adjacents.sort()
         return adjacents
         
