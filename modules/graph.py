@@ -73,6 +73,9 @@ class Graph:
         return self._getNodeDegree(value)
 
 #   @abstract
+    def getAdjacentsFrom(self, value) -> tuple:
+        raise Exception('Abstract method must be implemented')
+
     def printGraph(self) -> None: 
         raise Exception('Abstract method must be implemented')
 

@@ -182,7 +182,7 @@ def showGraphMenuController(view):
     clearScreen()
 
 
-def showEdgeAndNodesMenuController(view): 
+def showEdgeAndNodesMenuController(view):
     graph = appData.getGraph()
     clearScreen()
     renderView(view)
@@ -216,11 +216,21 @@ def checkNodeDegreeMenuController(view):
                 break
 
 
-def showAdjacentsMenuController(view): 
+def showAdjacentsMenuController(view):
     graph = appData.getGraph()
     while True:
         renderView(view)
-        input()
+        try:
+            nodeValue = int(input('VERTICE: '))
+            adjacents = graph.getAdjacentsFrom(nodeValue)
+            print(f'LISTA DE ADJACENCIAS: {adjacents}')
+        except Exception as error:
+            print(error)
+        finally:
+            keepOn = input('DESEJA REALIZAR UMA NOVA CONSULTA? (1 - SIM)\nR: ')
+            clearScreen()
+            if(keepOn != '1'):
+                break
 
 
 def runAlgorithmsMenuController(view): pass
