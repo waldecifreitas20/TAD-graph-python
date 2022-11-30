@@ -10,16 +10,18 @@ g.addEdge(1,1)
 dg = DirectionedListGraph(3)
 
 
-dg.addEdge(1,2)
 dg.addEdge(1,0)
+dg.addEdge(1,2)
 
 
 
 dfs = DepthFirstSearch(dg)
 
 
-et = dfs.getEdgesTypes(6)
-hasCicle = dfs.hasCicle()
-r = dfs.getTopologicalSorting()
+r = dfs.getTopologicalSorting(2)
+print(r)
+print(dfs.discoveryTime)
+print(dfs.finalTime)
+""" 
 for edge in et:
-    print(f'{edge["origin"]}, {edge["destiny"]} = {edge["type"]}')
+    print(f'{edge["origin"]}, {edge["destiny"]} = {edge["type"]}') """

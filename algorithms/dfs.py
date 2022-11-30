@@ -14,6 +14,7 @@ class DepthFirstSearch:
         self.discoveryTime = []
         self.finalTime = []
         self.edgeTypes = []
+        self.topologicalSorting = []
 
     def _initVariables(self):
         self.runtime = 0
@@ -22,6 +23,7 @@ class DepthFirstSearch:
         self.discoveryTime.clear()
         self.edgeTypes.clear()
         self.ancestor.clear()
+        self.topologicalSorting.clear()
 
         for _ in range(self.graph.getNumberNodes()):
             self.colors.append(WHITE)
@@ -40,7 +42,7 @@ class DepthFirstSearch:
                 self._classifyEdgesDFS(node)
         return self.edgeTypes
 
-    def _classifyEdgesDFS(self, node):
+    def _classifyEdgesDFS(self, node):        
         self.runtime += 1
         self.colors[node] = GRAY
         self.discoveryTime[node] = self.runtime
@@ -99,19 +101,39 @@ class DepthFirstSearch:
         if self.hasCicle():
             raise Exception('Graph must have no cicle')
         
-        tree = []
-        for node in range(self.graph.getNumberNodes()):
-            if self.graph.getDegreeOut(node) == 0:
-                tree.append(node)
-                break
-        
-        index = tree[0]
-        for _ in range(self.graph.getNumberNodes()):
-            ancestor = self.ancestor[index]
-            tree.append(ancestor)
-            index = ancestor
+        self._initVariables()
 
-        return tree
+        if self.colors[initialNode] == WHITE:
+            self._getTopologicalSortingDFS(initialNode)
+
+        for node in range(self.graph.getNumberNodes()):
+            if self.colors[node] == WHITE:
+                self._getTopologicalSortingDFS(node)
+        
+        self.topologicalSorting.reverse()
+        return self.topologicalSorting
+
+    def _getTopologicalSortingDFS(self, node):        
+        self.runtime += 1
+        self.colors[node] = GRAY
+        self.discoveryTime[node] = self.runtime
+
+        adjacents = self.graph.getAdjacentsFrom(node)
+        adjacents.sort(reverse=True)
+        
+        while len(adjacents) != 0:
+            destinyNode = adjacents.pop()
+            if self.colors[destinyNode] == WHITE:
+                self.ancestor[destinyNode] = node
+                self._getTopologicalSortingDFS(destinyNode)
+
+        self.runtime += 1
+        self.finalTime[node] = self.runtime
+        self.colors[node] = BLACK
+        self.topologicalSorting.append(node)
+
+
+
     class EdgeType:
         TREE = '_TREE_'
         BACK = '_BACK_'
