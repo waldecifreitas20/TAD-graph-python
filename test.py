@@ -28,7 +28,8 @@ dg.addEdge(4,1)
 dfs = DepthFirstSearch(dg)
 
 
-et = dfs.getEdgesTypes()
+et = dfs.getEdgesTypes(6)
 hasCicle = dfs.hasCicle()
 
-print(hasCicle)
+for edge in et:
+    print(f'{edge["origin"]}, {edge["destiny"]} = {edge["type"]}')

@@ -26,9 +26,11 @@ class DepthFirstSearch:
             self.finalTime.append(_MAX_VALUE_)
             self.discoveryTime.append(_MAX_VALUE_)
 
-    def getEdgesTypes(self) -> list:
+    def getEdgesTypes(self, initialNode=0) -> list:
         self._initVariables()
 
+        if self.colors[initialNode] == WHITE:
+            self._classifyEdgesDFS(initialNode)
         for node in range(self.graph.getNumberNodes()):
             if self.colors[node] == WHITE:
                 self._classifyEdgesDFS(node)
@@ -82,15 +84,17 @@ class DepthFirstSearch:
         self.finalTime[node] = self.runtime
         self.colors[node] = BLACK
 
-    def hasCicle(self):
-        edgesType = self.getEdgesTypes()
+    def hasCicle(self, initialNode=0):
+        edgesType = self.getEdgesTypes(initialNode)
         cicles = list(filter(lambda edge: edge['type'] == self.EdgeType.BACK, edgesType))
       
         return len(cicles) > 0
 
+    def getTopologicalSorting(self, initialNode):
+       pass
 
     class EdgeType:
-        TREE = '__TREE__'
-        BACK = '__BACK__'
-        CROSS = '__CROSS__'
-        FORWARD = '__FORWARD__'
+        TREE = '_TREE_'
+        BACK = '_BACK_'
+        CROSS = '_CROSS_'
+        FORWARD = '_FORWARD_'
