@@ -70,6 +70,9 @@ class Graph:
         return self._getNodeDegree(value)
 
 #   @abstract
+    def getTransposed(self):
+        raise Exception('Abstract method must be implemented')
+
     def printGraph(self) -> None: 
         raise Exception('Abstract method must be implemented')
 

@@ -137,8 +137,9 @@ class DepthFirstSearch:
         self.getEdgesTypes(initialNode)
         finalTime = self.finalTime
 
-        indexes = sortIndexOfMaxValue(finalTime)
-        
+        indexes = sortIndexesOfMaxValue(finalTime)
+        transposted = self.graph.getTransposed()
+        print(transposted)
 
 
  
