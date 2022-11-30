@@ -41,6 +41,15 @@ class MatrixGraph(Graph):
         return degree
         
 #   @Override
+    def getAdjacentsFrom(self, value) -> list:
+        adjacents = []
+        for i in range(self.getNumberNodes()):
+            if self.edges[value][i] != 0:
+                adjacents.append(i)
+        adjacents.sort()
+        return adjacents
+        
+#   @Override
     def printGraph(self):
         self._printNodeNameLine()
         for line in range(self.getNumberNodes()):

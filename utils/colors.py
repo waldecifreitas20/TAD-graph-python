@@ -1,3 +1,3 @@
-GRAY = '__GRAY__'
-BLACK = '__BLACK__'
-WHITE = '__WHITE__'
+WHITE = '_WHITE_'
+GRAY = '_GRAY_'
+BLACK = '_BLACK_'

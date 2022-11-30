@@ -72,12 +72,16 @@ def showGraphMenu():
     print(_THICK_BORDER)
 
 
-def showEdgeAndNodesLengthMenu(): pass
+def showEdgeAndNodesLengthMenu(): 
+    print(_THICK_BORDER)
+    print('INFORMACOES')
+    print(_THICK_BORDER)
+
 
 
 def checkNodeDegreeMenu():
     print(_THICK_BORDER)
-    print('INSIRA O VALOR DO NODE')
+    print('INSIRA O VALOR DO VERTICE')
     print(_THICK_BORDER)
 
 
@@ -99,6 +103,12 @@ def runAlgorithmsMenu():
     print('    6 - ARVORE GERADORA MINIMA')
     print(_THIN_BORDER)
     print('# - ALGORITMO DIJKSTRA')
-    print('    6 - CAMINHO MINIMO DE UM VERTICE PARA QUALQUER OUTRO')
+    print('    7 - CAMINHO MINIMO DE UM VERTICE PARA QUALQUER OUTRO')
     print('0 - VOLTAR PARA O MENU PRINCIPAL')
+    print(_THICK_BORDER)
+
+
+def showAdjacentsMenu():
+    print(_THICK_BORDER)
+    print('INSIRA O VALOR DO VERTICE')
     print(_THICK_BORDER)

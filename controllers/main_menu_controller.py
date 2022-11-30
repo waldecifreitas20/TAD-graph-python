@@ -5,59 +5,65 @@ from modules.matrix_graph import *
 from modules.matrix_directioned_graph import *
 from utils.checkers import *
 from utils.menu_options import *
-from views.menu import clearScreen
+from views.main_menu import *
+from controllers.algorithms_menu_controller import *
 
 
 def renderView(view): return view()
 
 
-def getMenuViewController(menuOption, views):
+def getMenuViewController(menuOption):
     if (menuOption == '1'):
         return (
-            views.generateGraphMenu,
+            generateGraphMenu,
             generateGraphMenuController,
         )
 
     if (menuOption == '2'):
         return (
-            views.addEdgeMenu,
+            addEdgeMenu,
             addEdgeMenuController,
         )
 
     if (menuOption == '3'):
         return (
-            views.removeEdgeMenu,
+            removeEdgeMenu,
             removeEdgeMenuController
         )
 
     if (menuOption == '4'):
         return (
-            views.hasEdgeMenu,
+            hasEdgeMenu,
             hasEdgeMenuController
         )
 
     if (menuOption == '5'):
         return (
-            views.showGraphMenu,
+            showGraphMenu,
             showGraphMenuController
         )
 
     if (menuOption == '6'):
         return (
-            views.showEdgeAndNodesLengthMenu,
+            showEdgeAndNodesLengthMenu,
             showEdgeAndNodesMenuController
         )
 
     if (menuOption == '7'):
         return (
-            views.checkNodeDegreeMenu,
+            checkNodeDegreeMenu,
             checkNodeDegreeMenuController
         )
 
     if (menuOption == '8'):
         return (
-            views.runAlgorithmsMenu,
+            runAlgorithmsMenu,
             runAlgorithmsMenuController
+        )
+    if (menuOption == '9'):
+        return (
+            showAdjacentsMenu,
+            showAdjacentsMenuController
         )
 
 
@@ -177,7 +183,13 @@ def showGraphMenuController(view):
     clearScreen()
 
 
-def showEdgeAndNodesMenuController(view): pass
+def showEdgeAndNodesMenuController(view):
+    graph = appData.getGraph()
+    clearScreen()
+    renderView(view)
+    print('O GRAFO ATUAL CONTEM: ')
+    print(F'{graph.getNumberNodes()} VERTICES E {graph.getNumberEdges()} ARESTAS')
+    input('\nAPERTE ENTER PARA CONTINUAR...')
 
 
 def checkNodeDegreeMenuController(view):
@@ -205,4 +217,33 @@ def checkNodeDegreeMenuController(view):
                 break
 
 
-def runAlgorithmsMenuController(view): pass
+def showAdjacentsMenuController(view):
+    graph = appData.getGraph()
+    while True:
+        renderView(view)
+        try:
+            nodeValue = int(input('VERTICE: '))
+            adjacents = graph.getAdjacentsFrom(nodeValue)
+            print(f'LISTA DE ADJACENCIAS: {adjacents}')
+        except Exception as error:
+            print(error)
+        finally:
+            keepOn = input('DESEJA REALIZAR UMA NOVA CONSULTA? (1 - SIM)\nR: ')
+            clearScreen()
+            if(keepOn != '1'):
+                break
+
+
+def runAlgorithmsMenuController(view):
+    while True:
+        renderView(view)
+        try:
+            option = int(input('ESCOLHA UMA OPCAO: '))
+            if option == 0:
+                break
+            view, controller = getAlgorithmViewController(option)
+            controller(view)
+        except Exception as error:
+            clearScreen()
+            print('ESCOLHA UMA OPCAO VALIDA!')
+    clearScreen()

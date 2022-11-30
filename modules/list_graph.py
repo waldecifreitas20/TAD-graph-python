@@ -51,6 +51,7 @@ class ListGraph(Graph):
                 print(f'-({weight})-> {adjacent}', end=f' ')
             print('-> null')
 
+#   @Override
     def getAdjacentsFrom(self,value):
         adjacents = []
         for edge in self.edges:

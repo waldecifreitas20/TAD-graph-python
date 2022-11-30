@@ -12,3 +12,8 @@ def isDirectionedGraph(graph):
     
     return isDirectionedList or isDirectionedMatrix
 
+def indexOf(match, list):
+    try:
+        return list.index(match)
+    except:
+        return -1
