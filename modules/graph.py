@@ -76,6 +76,9 @@ class Graph:
     def getAdjacentsFrom(self, value) -> tuple:
         raise Exception('Abstract method must be implemented')
 
+    def getTransposed(self):
+        raise Exception('Abstract method must be implemented')
+
     def printGraph(self) -> None: 
         raise Exception('Abstract method must be implemented')
 
