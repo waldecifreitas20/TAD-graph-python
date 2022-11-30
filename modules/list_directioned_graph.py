@@ -22,3 +22,13 @@ class DirectionedListGraph(ListGraph):
 
     def _getNodeDegree(self, value):
         return self.getDegreeIn() + self.getDegreeOut()
+
+    def getTransposed(self):
+        graph = DirectionedListGraph(self.getNumberNodes())
+
+        for edge in self.edges:
+            fromNode = edge.toNode
+            toNode = edge.fromNode
+            graph.addEdge(fromNode, toNode)
+            
+        return graph

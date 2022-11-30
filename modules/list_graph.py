@@ -51,6 +51,7 @@ class ListGraph(Graph):
                 print(f'-({weight})-> {adjacent}', end=f' ')
             print('-> null')
 
+#   @Override
     def getAdjacentsFrom(self,value):
         adjacents = []
         for edge in self.edges:
@@ -58,3 +59,13 @@ class ListGraph(Graph):
                 adjacents.append(edge.toNode)
         adjacents.sort()
         return adjacents
+
+    def getTransposed(self):
+        graph = ListGraph(self.getNumberNodes())
+
+        for edge in self.edges:
+            fromNode = edge.toNode
+            toNode = edge.fromNode
+            graph.addEdge(fromNode, toNode)
+            
+        return graph
