@@ -7,29 +7,25 @@ g = ListGraph(5)
 g.addEdge(1,1)
 
 
-dg = DirectionedListGraph(10)
-
-dg.addEdge(0,1)
-dg.addEdge(0,5)
-dg.addEdge(0,3)
-dg.addEdge(0,2)
+dg = DirectionedListGraph(9)
 
 dg.addEdge(1,2)
+dg.addEdge(2,7)
+dg.addEdge(7,1)
+dg.addEdge(7,3)
+dg.addEdge(3,1)
 
-dg.addEdge(2,3)
-dg.addEdge(2,4)
-
-dg.addEdge(4,6)
-
-dg.addEdge(5,4)
-dg.addEdge(5,6)
-
-dg.addEdge(6,7)
-dg.addEdge(6,8)
-
+dg.addEdge(3,4)
 dg.addEdge(7,8)
+dg.addEdge(2,5)
 
-dg.addEdge(9,6)
+
+dg.addEdge(5,8)
+dg.addEdge(8,4)
+dg.addEdge(4,6)
+dg.addEdge(6,5)
+
+
 
 
 dfs = DepthFirstSearch(dg)

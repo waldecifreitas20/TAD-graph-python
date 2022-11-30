@@ -132,15 +132,42 @@ class DepthFirstSearch:
         self.topologicalSorting.append(node)
 
     def getStrengthComponents(self, initialNode=0):
-        self._initVariables()
 
         self.getEdgesTypes(initialNode)
         finalTime = self.finalTime
-
         indexes = sortIndexesOfMaxValue(finalTime)
-        transposted = self.graph.getTransposed()
-        print(transposted)
 
+        self.graph = self.graph.getTransposed()
+        self._initVariables()
+
+        
+        for index in indexes:
+            if self.colors[index] == WHITE:
+                component = []
+                self._discoveryComponent(index, component)
+                self.strengthComponents.append(component)
+
+        return self.strengthComponents
+
+    def _discoveryComponent(self, node, component):
+        self.runtime += 1
+        self.colors[node] = GRAY
+        self.discoveryTime[node] = self.runtime
+        
+        component.append(node)
+
+        adjacents = self.graph.getAdjacentsFrom(node)
+        adjacents.sort(reverse=True)
+
+        while len(adjacents) != 0:
+            destinyNode = adjacents.pop()
+            if self.colors[destinyNode] == WHITE:
+                self.ancestor[destinyNode] = node
+                self._discoveryComponent(destinyNode, component)
+
+        self.runtime += 1
+        self.finalTime[node] = self.runtime
+        self.colors[node] = BLACK
 
  
 
