@@ -26,14 +26,13 @@ class DepthFirstSearch:
             self.finalTime.append(_MAX_VALUE_)
             self.discoveryTime.append(_MAX_VALUE_)
 
-    def getEdgesTypes(self):
+    def getEdgesTypes(self) -> list:
         self._initVariables()
 
         for node in range(self.graph.getNumberNodes()):
             if self.colors[node] == WHITE:
                 self._classifyEdgesDFS(node)
         return self.edgeTypes
-
 
     def _classifyEdgesDFS(self, node):
         self.runtime += 1
@@ -48,26 +47,46 @@ class DepthFirstSearch:
                 try:
                     destinyNode = adjacents.pop()
                     if self.colors[destinyNode] == WHITE:
-                        self.edgeTypes.append([node, destinyNode, self.EdgeType.TREE])
+                        self.edgeTypes.append({
+                            'origin': node,
+                            'destiny': destinyNode,
+                            'type': self.EdgeType.TREE
+                        })
                         self._classifyEdgesDFS(destinyNode)
                     else:
-                        isBackEdge = not isDirectionedGraph(self.graph) or self.colors[destinyNode] == GRAY
+                        isBackEdge = not isDirectionedGraph(
+                            self.graph) or self.colors[destinyNode] == GRAY
                         if isBackEdge:
-                            self.edgeTypes.append([node, destinyNode, self.EdgeType.BACK])
-                            
+                            self.edgeTypes.append({
+                                'origin': node,
+                                'destiny': destinyNode,
+                                'type': self.EdgeType.BACK})
+
                         elif self.colors[destinyNode] == BLACK:
-                            
-                                isForwardEdge = self.discoveryTime[destinyNode] > self.discoveryTime[node] 
-                                if isForwardEdge:
-                                    self.edgeTypes.append([node, destinyNode, self.EdgeType.FORWARD])
-                                else:
-                                    self.edgeTypes.append([node, destinyNode, self.EdgeType.CROSS])
+
+                            isForwardEdge = self.discoveryTime[destinyNode] > self.discoveryTime[node]
+                            if isForwardEdge:
+                                self.edgeTypes.append({
+                                    'origin': node,
+                                    'destiny': destinyNode,
+                                    'type': self.EdgeType.FORWARD})
+                            else:
+                                self.edgeTypes.append({
+                                    'origin': node,
+                                    'destiny': destinyNode,
+                                    'type': self.EdgeType.CROSS})
                 except:
                     break
 
         self.runtime += 1
         self.finalTime[node] = self.runtime
         self.colors[node] = BLACK
+
+    def hasCicle(self):
+        edgesType = self.getEdgesTypes()
+        cicles = list(filter(lambda edge: edge['type'] == self.EdgeType.BACK, edgesType))
+      
+        return len(cicles) > 0
 
 
     class EdgeType:

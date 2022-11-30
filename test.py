@@ -25,14 +25,10 @@ dg.addEdge(5,6)
 dg.addEdge(4,5)
 dg.addEdge(4,1)
 
-
-
-
-
 dfs = DepthFirstSearch(dg)
 
 
 et = dfs.getEdgesTypes()
+hasCicle = dfs.hasCicle()
 
-
-print(et)
+print(hasCicle)
