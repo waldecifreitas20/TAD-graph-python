@@ -49,4 +49,14 @@ class DirectionedMatrixGraph(MatrixGraph):
                 degree += 1
         return degree
     
+    def getTransposed(self):
+        numberNodes = self.getNumberNodes()
+        graph = DirectionedMatrixGraph(numberNodes)
+
+        for fromNode in range(self.getNumberNodes()):
+            for toNode in range(self.getNumberNodes()):
+                if self.edges[fromNode][toNode] != 0:
+                    graph.addEdge(toNode, fromNode)
+            
+        return graph
         

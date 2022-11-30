@@ -72,11 +72,11 @@ class Graph:
             raise Exception(f'O VERTICE {value} NAO FAZ PARTE DO GRAFO!')
         return self._getNodeDegree(value)
 
+    def getTransposed(self):           
+        return self
+
 #   @abstract
     def getAdjacentsFrom(self, value) -> tuple:
-        raise Exception('Abstract method must be implemented')
-
-    def getTransposed(self):
         raise Exception('Abstract method must be implemented')
 
     def printGraph(self) -> None: 

@@ -1,5 +1,7 @@
 from modules.list_directioned_graph import *
 from modules.list_graph import *
+from modules.matrix_graph import *
+from modules.matrix_directioned_graph import *
 from algorithms.dfs import DepthFirstSearch
 
 g = ListGraph(5)
