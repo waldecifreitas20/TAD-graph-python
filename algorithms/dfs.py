@@ -1,6 +1,6 @@
 from utils.colors import *
 from utils.checkers import isDirectionedGraph
-
+from utils.tools import *
 
 _MAX_VALUE_ = 999999999
 
@@ -15,6 +15,8 @@ class DepthFirstSearch:
         self.finalTime = []
         self.edgeTypes = []
         self.topologicalSorting = []
+        self.strengthComponents = []
+        self.remainingNodes = []
 
     def _initVariables(self):
         self.runtime = 0
@@ -42,7 +44,7 @@ class DepthFirstSearch:
                 self._classifyEdgesDFS(node)
         return self.edgeTypes
 
-    def _classifyEdgesDFS(self, node):        
+    def _classifyEdgesDFS(self, node):
         self.runtime += 1
         self.colors[node] = GRAY
         self.discoveryTime[node] = self.runtime
@@ -50,42 +52,38 @@ class DepthFirstSearch:
         adjacents = self.graph.getAdjacentsFrom(node)
         adjacents.sort(reverse=True)
 
-        if len(adjacents) != 0:
-            while True:
-                try:
-                    destinyNode = adjacents.pop()
-                    if self.colors[destinyNode] == WHITE:
+        while len(adjacents) != 0:
+            destinyNode = adjacents.pop()
+            if self.colors[destinyNode] == WHITE:
+                self.edgeTypes.append({
+                    'origin': node,
+                    'destiny': destinyNode,
+                    'type': self.EdgeType.TREE
+                })
+                self.ancestor[destinyNode] = node
+                self._classifyEdgesDFS(destinyNode)
+            else:
+                isBackEdge = not isDirectionedGraph(
+                    self.graph) or self.colors[destinyNode] == GRAY
+                if isBackEdge:
+                    self.edgeTypes.append({
+                        'origin': node,
+                        'destiny': destinyNode,
+                        'type': self.EdgeType.BACK})
+
+                elif self.colors[destinyNode] == BLACK:
+
+                    isForwardEdge = self.discoveryTime[destinyNode] > self.discoveryTime[node]
+                    if isForwardEdge:
                         self.edgeTypes.append({
                             'origin': node,
                             'destiny': destinyNode,
-                            'type': self.EdgeType.TREE
-                        })
-                        self.ancestor[destinyNode] = node
-                        self._classifyEdgesDFS(destinyNode)
+                            'type': self.EdgeType.FORWARD})
                     else:
-                        isBackEdge = not isDirectionedGraph(
-                            self.graph) or self.colors[destinyNode] == GRAY
-                        if isBackEdge:
-                            self.edgeTypes.append({
-                                'origin': node,
-                                'destiny': destinyNode,
-                                'type': self.EdgeType.BACK})
-
-                        elif self.colors[destinyNode] == BLACK:
-
-                            isForwardEdge = self.discoveryTime[destinyNode] > self.discoveryTime[node]
-                            if isForwardEdge:
-                                self.edgeTypes.append({
-                                    'origin': node,
-                                    'destiny': destinyNode,
-                                    'type': self.EdgeType.FORWARD})
-                            else:
-                                self.edgeTypes.append({
-                                    'origin': node,
-                                    'destiny': destinyNode,
-                                    'type': self.EdgeType.CROSS})
-                except:
-                    break
+                        self.edgeTypes.append({
+                            'origin': node,
+                            'destiny': destinyNode,
+                            'type': self.EdgeType.CROSS})
 
         self.runtime += 1
         self.finalTime[node] = self.runtime
@@ -93,14 +91,15 @@ class DepthFirstSearch:
 
     def hasCicle(self, initialNode=0):
         edgesType = self.getEdgesTypes(initialNode)
-        cicles = list(filter(lambda edge: edge['type'] == self.EdgeType.BACK, edgesType))
-      
+        cicles = list(
+            filter(lambda edge: edge['type'] == self.EdgeType.BACK, edgesType))
+
         return len(cicles) > 0
 
     def getTopologicalSorting(self, initialNode=0):
         if self.hasCicle():
             raise Exception('Graph must have no cicle')
-        
+
         self._initVariables()
 
         if self.colors[initialNode] == WHITE:
@@ -109,18 +108,18 @@ class DepthFirstSearch:
         for node in range(self.graph.getNumberNodes()):
             if self.colors[node] == WHITE:
                 self._getTopologicalSortingDFS(node)
-        
+
         self.topologicalSorting.reverse()
         return self.topologicalSorting
 
-    def _getTopologicalSortingDFS(self, node):        
+    def _getTopologicalSortingDFS(self, node):
         self.runtime += 1
         self.colors[node] = GRAY
         self.discoveryTime[node] = self.runtime
 
         adjacents = self.graph.getAdjacentsFrom(node)
         adjacents.sort(reverse=True)
-        
+
         while len(adjacents) != 0:
             destinyNode = adjacents.pop()
             if self.colors[destinyNode] == WHITE:
@@ -132,7 +131,17 @@ class DepthFirstSearch:
         self.colors[node] = BLACK
         self.topologicalSorting.append(node)
 
+    def getStrengthComponents(self, initialNode=0):
+        self._initVariables()
 
+        self.getEdgesTypes(initialNode)
+        finalTime = self.finalTime
+
+        indexes = sortIndexOfMaxValue(finalTime)
+        
+
+
+ 
 
     class EdgeType:
         TREE = '_TREE_'

@@ -35,9 +35,10 @@ dg.addEdge(9,6)
 dfs = DepthFirstSearch(dg)
 
 
-r = dfs.getTopologicalSorting(0)
+r = dfs.getStrengthComponents(0)
 print(r)
+print(dfs.finalTime)
+""" et = dfs.getEdgesTypes()
 
-""" 
 for edge in et:
     print(f'{edge["origin"]}, {edge["destiny"]} = {edge["type"]}') """
