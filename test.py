@@ -7,29 +7,19 @@ g = ListGraph(5)
 g.addEdge(1,1)
 
 
-dg = DirectionedListGraph(7)
+dg = DirectionedListGraph(3)
 
 
 dg.addEdge(1,2)
-dg.addEdge(1,5)
+dg.addEdge(1,0)
 
-dg.addEdge(2,5)
-dg.addEdge(2,3)
 
-dg.addEdge(3,6)
-
-dg.addEdge(6,2)
-
-dg.addEdge(5,6)
-
-dg.addEdge(4,5)
-dg.addEdge(4,1)
 
 dfs = DepthFirstSearch(dg)
 
 
 et = dfs.getEdgesTypes(6)
 hasCicle = dfs.hasCicle()
-
+r = dfs.getTopologicalSorting()
 for edge in et:
     print(f'{edge["origin"]}, {edge["destiny"]} = {edge["type"]}')

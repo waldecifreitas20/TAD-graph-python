@@ -10,6 +10,7 @@ class DepthFirstSearch:
     def __init__(self, graph) -> None:
         self.graph = graph
         self.colors = []
+        self.ancestor = []
         self.discoveryTime = []
         self.finalTime = []
         self.edgeTypes = []
@@ -20,17 +21,20 @@ class DepthFirstSearch:
         self.finalTime.clear()
         self.discoveryTime.clear()
         self.edgeTypes.clear()
+        self.ancestor.clear()
 
         for _ in range(self.graph.getNumberNodes()):
             self.colors.append(WHITE)
             self.finalTime.append(_MAX_VALUE_)
             self.discoveryTime.append(_MAX_VALUE_)
+            self.ancestor.append(None)
 
     def getEdgesTypes(self, initialNode=0) -> list:
         self._initVariables()
 
         if self.colors[initialNode] == WHITE:
             self._classifyEdgesDFS(initialNode)
+
         for node in range(self.graph.getNumberNodes()):
             if self.colors[node] == WHITE:
                 self._classifyEdgesDFS(node)
@@ -54,6 +58,7 @@ class DepthFirstSearch:
                             'destiny': destinyNode,
                             'type': self.EdgeType.TREE
                         })
+                        self.ancestor[destinyNode] = node
                         self._classifyEdgesDFS(destinyNode)
                     else:
                         isBackEdge = not isDirectionedGraph(
@@ -90,9 +95,23 @@ class DepthFirstSearch:
       
         return len(cicles) > 0
 
-    def getTopologicalSorting(self, initialNode):
-       pass
+    def getTopologicalSorting(self, initialNode=0):
+        if self.hasCicle():
+            raise Exception('Graph must have no cicle')
+        
+        tree = []
+        for node in range(self.graph.getNumberNodes()):
+            if self.graph.getDegreeOut(node) == 0:
+                tree.append(node)
+                break
+        
+        index = tree[0]
+        for _ in range(self.graph.getNumberNodes()):
+            ancestor = self.ancestor[index]
+            tree.append(ancestor)
+            index = ancestor
 
+        return tree
     class EdgeType:
         TREE = '_TREE_'
         BACK = '_BACK_'
