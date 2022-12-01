@@ -50,6 +50,10 @@ class MatrixGraph(Graph):
         return adjacents
         
 #   @Override
+    def getEdgeWeight(self, fromNode, toNode):
+        edgeWeight = self.edges[fromNode][toNode]
+        return edgeWeight
+#   @Override
     def printGraph(self):
         self._printNodeNameLine()
         for line in range(self.getNumberNodes()):

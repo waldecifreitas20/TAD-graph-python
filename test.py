@@ -13,20 +13,26 @@ g = ListGraph(5)
 g.addEdge(1,1)
 
 
-dg = DirectionedListGraph(4)
+dg = DirectionedListGraph(6)
 
-dg.addEdge(0,1)
-dg.addEdge(0,2)
-dg.addEdge(1,2)
-dg.addEdge(2,3)
-dg.addEdge(3,3)
-dg.addEdge(2,0)
+dg.addEdge(0,1,weight=2)
+dg.addEdge(0,2,weight=3)
+dg.addEdge(0,4,weight=1)
+
+dg.addEdge(2,3,weight=2)
+dg.addEdge(1,3,weight=3)
+dg.addEdge(1,2,weight=3)
+
+dg.addEdge(3,5,weight=2)
+dg.addEdge(3,4,weight=3)
 
 
 bfs = BreadthFirstSearch(dg)
 
-bfs.bfs()
-
+path = bfs.getPathBetween(0,3)
+print(bfs.discoveryTime)
+print(bfs.ancestor)
+print(path)
 """ 
 dfs = DepthFirstSearch(dg)
 
