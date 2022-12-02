@@ -50,9 +50,13 @@ class MatrixGraph(Graph):
         return adjacents
         
 #   @Override
-    def getEdgeWeight(self, fromNode, toNode):
+    def getEdge(self, fromNode, toNode):
         edgeWeight = self.edges[fromNode][toNode]
-        return edgeWeight
+        if edgeWeight <= 0:
+            raise Exception('Edges does not exist')
+        
+        return super.Edge(fromNode, toNode, edgeWeight)
+
 #   @Override
     def printGraph(self):
         self._printNodeNameLine()

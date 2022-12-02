@@ -28,11 +28,12 @@ dg.addEdge(3,4,weight=3)
 
 
 bfs = BreadthFirstSearch(dg)
+bfs.bfs()
 
-path = bfs.getPathBetween(0,3)
 print(bfs.discoveryTime)
+print(bfs.visited)
 print(bfs.ancestor)
-print(path)
+
 """ 
 dfs = DepthFirstSearch(dg)
 

@@ -76,7 +76,7 @@ class Graph:
         return self
 
 #   @abstract
-    def getEdgeWeight(self, fromNode, toNode):
+    def getEdge(self, fromNode, toNode):
         raise Exception('Abstract method must be implemented')
 
     def getAdjacentsFrom(self, value):
