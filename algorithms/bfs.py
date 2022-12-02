@@ -41,13 +41,12 @@ class BreadthFirstSearch:
 
             edges = []
             for destinyNode in adjacents:
-                weight = self.graph.getEdgeWeight(node, destinyNode)
-                edges.append([node, destinyNode, weight])
+                edge = self.graph.getEdge(node, destinyNode)
+                edges.append(edge)
 
             edges = sortEdgesByWeight(edges)
-   
             for edge in edges:
-                destinyNode = edge[1]   
+                destinyNode = edge.toNode   
                 if not self.visited[destinyNode]:
                     self.discoveryTime[destinyNode] = self.runtime
                     queue.append(destinyNode)
@@ -59,7 +58,7 @@ class BreadthFirstSearch:
         self.bfs(origin)
         path = []
         node = destiny
-        print(node)
+
         while node != origin or node == -1:
             path.append(node)
             next = self.ancestor[node]

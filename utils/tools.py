@@ -1,3 +1,6 @@
+from modules.graph import Graph
+
+
 def indexOfMaxValue(iterable):
     maxNumber = max(iterable)
     index = iterable.index(maxNumber)
@@ -22,9 +25,8 @@ def sortEdgesByWeight(edges=[]):
     for l, edge1 in enumerate(edges):
         for c, edge2 in enumerate(edges):
 
-            if sorting[l][2] < sorting[c][2]:
-                sorting[l], sorting[c] = sorting[c], sorting[l]
-
+            if sorting[l].weight < sorting[c].weight:
+                sorting[l], sorting[c] = sorting[c], sorting[l] 
     return sorting
 
 
