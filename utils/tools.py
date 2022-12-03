@@ -17,14 +17,13 @@ def sortIndexesOfMaxValue(iterable=list):
     return sortedList
 
 
-def sortEdgesByWeight(edges=[]):
+def sortEdgesByWeight(edges=[]) -> list:
     sorting = edges.copy()
     for l, edge1 in enumerate(edges):
         for c, edge2 in enumerate(edges):
 
-            if sorting[l][2] < sorting[c][2]:
-                sorting[l], sorting[c] = sorting[c], sorting[l]
-
+            if sorting[l].weight < sorting[c].weight:
+                sorting[l], sorting[c] = sorting[c], sorting[l] 
     return sorting
 
 

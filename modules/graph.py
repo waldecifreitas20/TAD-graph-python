@@ -72,29 +72,32 @@ class Graph:
             raise Exception(f'O VERTICE {value} NAO FAZ PARTE DO GRAFO!')
         return self._getNodeDegree(value)
 
-    def getTransposed(self):           
+    def getTransposed(self):
         return self
 
 #   @abstract
-    def getEdgeWeight(self, fromNode, toNode):
+    def getEdge(self, fromNode, toNode):
         raise Exception('Abstract method must be implemented')
 
-    def getAdjacentsFrom(self, value):
+    def getAdjacentsFrom(self, value) -> list:
         raise Exception('Abstract method must be implemented')
 
-    def printGraph(self) -> None: 
+    def getEdgesOf(self, value) -> list:
+        raise Exception('Abstract method must be implemented')
+    
+    def printGraph(self) -> None:
         raise Exception('Abstract method must be implemented')
 
-    def _addEdge(self, fromNode, toNode, weight=1): 
+    def _addEdge(self, fromNode, toNode, weight=1):
         raise Exception('Abstract method must be implemented')
 
-    def _removeEdge(self, fromNode, toNode): 
+    def _removeEdge(self, fromNode, toNode):
         raise Exception('Abstract method must be implemented')
 
-    def hasEdge(self, fromNode, toNode) -> bool: 
+    def hasEdge(self, fromNode, toNode) -> bool:
         raise Exception('Abstract method must be implemented')
 
-    def _getNodeDegree(self, value) -> int: 
+    def _getNodeDegree(self, value) -> int:
         raise Exception('Abstract method must be implemented')
 
     class Node:

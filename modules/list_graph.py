@@ -52,9 +52,12 @@ class ListGraph(Graph):
             print('-> null')
 
 #   @Override
-    def getEdgeWeight(self, fromNode, toNode):
-        egde = self.getEdge(fromNode, toNode)
-        return egde.weight
+    def getEdgesOf(self, value) -> list:
+        edges = []
+        for edge in self.edges:
+            if edge.fromNode == value:
+                edges.append(edge)
+        return edges
 
 #   @Override
     def getAdjacentsFrom(self,value):

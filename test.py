@@ -3,7 +3,7 @@ from modules.list_graph import *
 from modules.matrix_graph import *
 from modules.matrix_directioned_graph import *
 
-from algorithms.bfs import BreadthFirstSearch
+from algorithms.prim import Prim
 
 from collections import deque
 
@@ -13,26 +13,40 @@ g = ListGraph(5)
 g.addEdge(1,1)
 
 
-dg = DirectionedListGraph(6)
+dg = ListGraph(6)
 
-dg.addEdge(0,1,weight=2)
-dg.addEdge(0,2,weight=3)
-dg.addEdge(0,4,weight=1)
+dg.addEdge(0,1,weight=6)
+dg.addEdge(0,2,weight=1)
+dg.addEdge(0,3,weight=5)
 
+dg.addEdge(1,4,weight=5)
+dg.addEdge(3,5,weight=4)
+
+
+dg.addEdge(2,1,weight=2)
 dg.addEdge(2,3,weight=2)
-dg.addEdge(1,3,weight=3)
-dg.addEdge(1,2,weight=3)
+dg.addEdge(2,4,weight=6)
+dg.addEdge(2,5,weight=4)
 
-dg.addEdge(3,5,weight=2)
-dg.addEdge(3,4,weight=3)
+dg.addEdge(4,5,weight=3)
 
+""" 
+ """
 
+prim = Prim(dg)
+
+prim.getMinimalSpanningTree()
+print(prim.nodesWeight)
+print(prim.ancestor)
+
+""" 
 bfs = BreadthFirstSearch(dg)
+bfs.bfs()
+path = bfs.getPathBetween(0,6)
 
-path = bfs.getPathBetween(0,3)
-print(bfs.discoveryTime)
-print(bfs.ancestor)
-print(path)
+
+print(path) """
+
 """ 
 dfs = DepthFirstSearch(dg)
 
