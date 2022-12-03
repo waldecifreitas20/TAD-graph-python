@@ -1,6 +1,3 @@
-from modules.graph import Graph
-
-
 def indexOfMaxValue(iterable):
     maxNumber = max(iterable)
     index = iterable.index(maxNumber)
@@ -20,7 +17,7 @@ def sortIndexesOfMaxValue(iterable=list):
     return sortedList
 
 
-def sortEdgesByWeight(edges=[]):
+def sortEdgesByWeight(edges=[]) -> list:
     sorting = edges.copy()
     for l, edge1 in enumerate(edges):
         for c, edge2 in enumerate(edges):
