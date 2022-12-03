@@ -82,6 +82,9 @@ class Graph:
     def getAdjacentsFrom(self, value) -> list:
         raise Exception('Abstract method must be implemented')
 
+    def getEdgesOf(self, value) -> list:
+        raise Exception('Abstract method must be implemented')
+    
     def printGraph(self) -> None:
         raise Exception('Abstract method must be implemented')
 
