@@ -17,6 +17,8 @@ class MatrixGraph(Graph):
             for column in range(numberNodes):
                 edges[line].append(0)
         return edges
+
+
 #   @Override
     def _addEdge(self, fromNode, toNode, weight=1):
         self.edges[fromNode][toNode] = weight
@@ -53,10 +55,10 @@ class MatrixGraph(Graph):
     def getEdgesOf(self, value) -> list:
         edges = []
 
-        for i in range(self.getNodesNumber()):
+        for i in range(self.getNumberNodes()):
             edgeWeight = self.edges[value][i]
             if edgeWeight > 0:
-                edges.append(super.Edge(value, i, edgeWeight ))
+                edges.append(Graph.Edge(value, i, edgeWeight ))
         return edges
         
 #   @Override
@@ -65,7 +67,7 @@ class MatrixGraph(Graph):
         if edgeWeight <= 0:
             raise Exception('Edges does not exist')
         
-        return super.Edge(fromNode, toNode, edgeWeight)
+        return Graph.Edge(fromNode, toNode, edgeWeight)
 
 #   @Override
     def printGraph(self):

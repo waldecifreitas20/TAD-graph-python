@@ -15,6 +15,8 @@ class Graph:
 
         return nodes
 
+        
+
     def hasNode(self, value) -> bool:
         for node in self.nodes:
             if node.value == value:
@@ -25,11 +27,6 @@ class Graph:
         for node in self.nodes:
             if node.value == value:
                 return node
-
-    def getNodeId(self, value):
-        for node in self.nodes:
-            if node.value == value:
-                return node.id
 
     def getNumberNodes(self) -> int: return len(self.nodes)
 
