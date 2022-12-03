@@ -1,5 +1,5 @@
 from utils.tools import sortEdgesByWeight
-from collections import deque
+from modules.list_directioned_graph import DirectionedListGraph
 
 _MAX_INT_ = 999999999999
 
@@ -22,11 +22,11 @@ class Prim:
             self.visited.append(False)
         
 
-    def getMinimalSpanningTree(self, initialNode=0):
+    def _prim(self, initialNode=0):
         self._initVariables()
 
         self.nodesWeight[initialNode] = 0
-        
+
         edges = self.graph.getEdgesOf(initialNode)
         heap = sortEdgesByWeight(edges)
 
@@ -37,6 +37,19 @@ class Prim:
             if not self.visited[edge.toNode] and (edge.weight < self.nodesWeight[edge.toNode]):
                 self.ancestor[edge.toNode] = edge.fromNode
                 self.visited[edge.toNode] = True
+                self.nodesWeight[edge.toNode] = edge.weight
+
                 nextAdjacents = self.graph.getEdgesOf(edge.toNode)
                 heap.extend(nextAdjacents)
                 heap = sortEdgesByWeight(heap)
+
+    def getMinimalSpanningTree(self, initialNode=0):
+        self._prim(initialNode)
+        minimalTree = DirectionedListGraph(len(self.graph.nodes))
+    
+        for destinyNode in range(1, minimalTree.getNumberNodes()):
+            originNode = self.ancestor[destinyNode]
+            weight = self.nodesWeight[originNode]
+            minimalTree.addEdge(originNode, destinyNode, weight)
+
+        return minimalTree

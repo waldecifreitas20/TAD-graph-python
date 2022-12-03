@@ -13,7 +13,7 @@ g = ListGraph(5)
 g.addEdge(1,1)
 
 
-dg = ListGraph(6)
+dg = MatrixGraph(6)
 
 dg.addEdge(0,1,weight=6)
 dg.addEdge(0,2,weight=1)
@@ -35,9 +35,9 @@ dg.addEdge(4,5,weight=3)
 
 prim = Prim(dg)
 
-prim.getMinimalSpanningTree()
-print(prim.nodesWeight)
-print(prim.ancestor)
+tree = prim.getMinimalSpanningTree()
+tree.printGraph()
+
 
 """ 
 bfs = BreadthFirstSearch(dg)
