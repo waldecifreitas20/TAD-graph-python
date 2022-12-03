@@ -33,7 +33,6 @@ class Prim:
         while len(heap) > 0:
 
             edge = heap.pop(0)
-            print(edge)
             
             if not self.visited[edge.toNode] and (edge.weight < self.nodesWeight[edge.toNode]):
                 self.ancestor[edge.toNode] = edge.fromNode
