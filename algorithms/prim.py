@@ -16,7 +16,7 @@ class Prim:
         self.nodesWeight.clear()
         self.visited.clear()
         
-        for _ in range(self.graph.getNumberNodes()):
+        for _ in range(self.graph.length()):
             self.ancestor.append(None)
             self.nodesWeight.append(_MAX_INT_)
             self.visited.append(False)
@@ -47,7 +47,7 @@ class Prim:
         self._prim(initialNode)
         minimalTree = DirectionedListGraph(len(self.graph.nodes))
     
-        for destinyNode in range(1, minimalTree.getNumberNodes()):
+        for destinyNode in range(1, minimalTree.length()):
             originNode = self.ancestor[destinyNode]
             weight = self.nodesWeight[originNode]
             minimalTree.addEdge(originNode, destinyNode, weight)

@@ -28,7 +28,7 @@ class Graph:
             if node.value == value:
                 return node
 
-    def getNumberNodes(self) -> int: return len(self.nodes)
+    def length(self) -> int: return len(self.nodes)
 
     def getNumberEdges(self) -> int: return self._edgesLength
 

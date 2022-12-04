@@ -3,7 +3,7 @@ from modules.list_graph import *
 from modules.matrix_graph import *
 from modules.matrix_directioned_graph import *
 
-from algorithms.prim import Prim
+from algorithms.dijkstra import Dijkstra
 
 from collections import deque
 
@@ -12,31 +12,36 @@ g = ListGraph(5)
 
 g.addEdge(1,1)
 
+v = 5
+dg = MatrixGraph(v)
+dg = DirectionedListGraph(v)
 
-dg = MatrixGraph(6)
+dg.addEdge(0,1,weight=2)
+dg.addEdge(0,4,weight=10)
+dg.addEdge(0,3,weight=3)
 
-dg.addEdge(0,1,weight=6)
-dg.addEdge(0,2,weight=1)
-dg.addEdge(0,3,weight=5)
+dg.addEdge(1,2,weight=5)
 
-dg.addEdge(1,4,weight=5)
-dg.addEdge(3,5,weight=4)
-
-
-dg.addEdge(2,1,weight=2)
-dg.addEdge(2,3,weight=2)
-dg.addEdge(2,4,weight=6)
-dg.addEdge(2,5,weight=4)
-
-dg.addEdge(4,5,weight=3)
+dg.addEdge(2,4,weight=1)
+dg.addEdge(3,2,weight=2)
+dg.addEdge(3,4,weight=6)
 
 """ 
+dg.addEdge(1,3,weight=4)
+dg.addEdge(1,4,weight=3)
+dg.addEdge(2,4,weight=1)
+
+dg.addEdge(4,3,weight=3)
+dg.addEdge(3,5,weight=2)
+dg.addEdge(4,5,weight=1)
+
+
  """
 
-prim = Prim(dg)
+dijk = Dijkstra(dg)
 
-tree = prim.getMinimalSpanningTree()
-tree.printGraph()
+tree = dijk.getShortestPath(3,4)
+print(tree)
 
 
 """ 

@@ -24,7 +24,7 @@ class DirectionedListGraph(ListGraph):
         return self.getDegreeIn() + self.getDegreeOut()
 
     def getTransposed(self):
-        graph = DirectionedListGraph(self.getNumberNodes())
+        graph = DirectionedListGraph(self.length())
 
         for edge in self.edges:
             fromNode = edge.toNode

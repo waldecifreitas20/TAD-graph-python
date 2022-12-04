@@ -37,7 +37,7 @@ class MatrixGraph(Graph):
 #   @Override
     def _getNodeDegree(self, value):
         degree = 0
-        for i in range(self.getNumberNodes()):
+        for i in range(self.length()):
             if self.edges[value][i] != 0:
                 degree += 1
         return degree
@@ -45,7 +45,7 @@ class MatrixGraph(Graph):
 #   @Override
     def getAdjacentsFrom(self, value) -> list:
         adjacents = []
-        for i in range(self.getNumberNodes()):
+        for i in range(self.length()):
             if self.edges[value][i] != 0:
                 adjacents.append(i)
         adjacents.sort()
@@ -55,7 +55,7 @@ class MatrixGraph(Graph):
     def getEdgesOf(self, value) -> list:
         edges = []
 
-        for i in range(self.getNumberNodes()):
+        for i in range(self.length()):
             edgeWeight = self.edges[value][i]
             if edgeWeight > 0:
                 edges.append(Graph.Edge(value, i, edgeWeight ))
@@ -72,20 +72,20 @@ class MatrixGraph(Graph):
 #   @Override
     def printGraph(self):
         self._printNodeNameLine()
-        for line in range(self.getNumberNodes()):
+        for line in range(self.length()):
             node = self.nodes[line].value
             print(f'{node}| ', end='')
-            for column in range(self.getNumberNodes()):
+            for column in range(self.length()):
                 edge = self.edges[line][column]
                 print(f'{edge} ', end='')
             print()
 
     def _printNodeNameLine(self):
         print('   ', end='')
-        for i in range(self.getNumberNodes()):
+        for i in range(self.length()):
             print(f'{self.nodes[i].value} ', end='')
         print()
-        for i in range(self.getNumberNodes()):
+        for i in range(self.length()):
             print(f'---', end='')
         print()
         

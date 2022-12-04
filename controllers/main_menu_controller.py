@@ -188,7 +188,7 @@ def showEdgeAndNodesMenuController(view):
     clearScreen()
     renderView(view)
     print('O GRAFO ATUAL CONTEM: ')
-    print(F'{graph.getNumberNodes()} VERTICES E {graph.getNumberEdges()} ARESTAS')
+    print(F'{graph.length()} VERTICES E {graph.getNumberEdges()} ARESTAS')
     input('\nAPERTE ENTER PARA CONTINUAR...')
 
 
