@@ -241,8 +241,9 @@ def runAlgorithmsMenuController(view):
             option = int(input('ESCOLHA UMA OPCAO: '))
             if option == 0:
                 break
-            view, controller = getAlgorithmViewController(option)
-            controller(view)
+        
+            algorithmView, controller = getAlgorithmViewController(option)
+            controller(algorithmView)
         except Exception as error:
             clearScreen()
             print('ESCOLHA UMA OPCAO VALIDA!')
