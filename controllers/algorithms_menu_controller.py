@@ -67,15 +67,52 @@ def classifyEdgesController(view):
             if keepOn != '1':
                 clearScreen()
                 return
+
 def hasCicleController(view): 
     graph = appData.getGraph()
+    dfs = DepthFirstSearch(graph)
+
+    clearScreen()
     renderView(view)
-    input()
+    try:
+        hasCicle = dfs.hasCicle()
+        
+        if hasCicle:
+            print('O GRAFO POSSUI CICLOS!')
+        else:
+            print('O GRAFO NAO POSSUI CICLOS!')
+    except Exception as error:
+        print(f'ERRO AO VERIFICAR EXISTENCIA DE CICLO: {error.upper()}')
+    finally:
+        input('\n APERTE ENTER PARA CONTINUAR...')        
+    
     
 def topologicalSortingController(view): 
     graph = appData.getGraph()
-    renderView(view)
-    input()
+    dfs = DepthFirstSearch(graph)
+    while True:
+        clearScreen()
+        renderView(view)
+        try:
+            initialNode = int(input('VERTICE INICIAL: '))
+            topologicalSorting = dfs.getTopologicalSorting(initialNode)
+            clearScreen()
+            if len(topologicalSorting) > 0:
+                print(f'PARTIDO DO VERTICE {initialNode}, A CLASSIFICACAO DAS ARESTAS É ESTA:')
+                print('INICIO - ', end='')
+                for node in topologicalSorting:
+                    print(f'{node} - ', end='')
+                print('FIM')
+            else:
+                print('O GRAFO NAO POSSUI ARESTAS!')
+        except:
+            clearScreen()
+            print('VERTICE INVALIDO!')    
+        finally:
+            keepOn = input('\nDESEJA REALIZAR UMA NOVA EXECUCAO? DIGITE "1" PARA "SIM"\nR: ')
+            if keepOn != '1':
+                clearScreen()
+                return
 
 def strongerComponentsController(view): 
     graph = appData.getGraph()

@@ -3,7 +3,7 @@ from modules.list_graph import *
 from modules.matrix_graph import *
 from modules.matrix_directioned_graph import *
 
-from algorithms.dijkstra import Dijkstra
+from algorithms.dfs import *
 
 from collections import deque
 
@@ -38,11 +38,11 @@ dg.addEdge(4,5,weight=1)
 
  """
 
-dijk = Dijkstra(dg)
+""" dijk = Dijkstra(dg)
 
 tree = dijk.getShortestPath(3,4)
 print(tree)
-
+ """
 
 """ 
 bfs = BreadthFirstSearch(dg)
@@ -52,7 +52,6 @@ path = bfs.getPathBetween(0,6)
 
 print(path) """
 
-""" 
 dfs = DepthFirstSearch(dg)
 
 
@@ -62,4 +61,6 @@ print(dfs.finalTime)
 et = dfs.getEdgesTypes()
 
 for edge in et:
-    print(f'{edge["origin"]}, {edge["destiny"]} = {edge["type"]}') """
+    print(f'{edge["origin"]}, {edge["destiny"]} = {edge["type"]}') 
+"""
+""" 
