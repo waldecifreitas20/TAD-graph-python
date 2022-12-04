@@ -46,10 +46,10 @@ class Prim:
     def getMinimalSpanningTree(self, initialNode=0):
         self._prim(initialNode)
         minimalTree = DirectionedListGraph(len(self.graph.nodes))
-    
-        for destinyNode in range(1, minimalTree.length()):
-            originNode = self.ancestor[destinyNode]
-            weight = self.nodesWeight[originNode]
-            minimalTree.addEdge(originNode, destinyNode, weight)
-
+        try:
+            for destinyNode in range(1, minimalTree.length()):
+                originNode = self.ancestor[destinyNode]
+                weight = self.nodesWeight[originNode]
+                minimalTree.addEdge(originNode, destinyNode, weight)
+        except: pass
         return minimalTree

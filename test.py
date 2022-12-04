@@ -3,7 +3,7 @@ from modules.list_graph import *
 from modules.matrix_graph import *
 from modules.matrix_directioned_graph import *
 
-from algorithms.dfs import *
+from algorithms.prim import *
 
 from collections import deque
 
@@ -26,6 +26,8 @@ dg.addEdge(2,4,weight=1)
 dg.addEdge(3,2,weight=2)
 dg.addEdge(3,4,weight=6)
 
+prim = Prim(dg)
+prim.getMinimalSpanningTree().printGraph()
 """ 
 dg.addEdge(1,3,weight=4)
 dg.addEdge(1,4,weight=3)
@@ -51,6 +53,7 @@ path = bfs.getPathBetween(0,6)
 
 
 print(path) """
+"""
 
 dfs = DepthFirstSearch(dg)
 
@@ -62,5 +65,4 @@ et = dfs.getEdgesTypes()
 
 for edge in et:
     print(f'{edge["origin"]}, {edge["destiny"]} = {edge["type"]}') 
-"""
 """ 

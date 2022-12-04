@@ -169,7 +169,26 @@ def shortestPathController(view):
 # PRIM
 def minimalSpanningTreeController(view): 
     graph = appData.getGraph()
-    renderView(view)
+    while True:
+        clearScreen()
+        renderView(view)
+        prim = Prim(graph)
+        try:
+            originNode = int(input('ORIGEM: '))
+            tree = prim.getMinimalSpanningTree(originNode)
+
+            print(f'ARVORE GERADORA MINIMA DO VERTICE {originNode}:')
+            tree.printGraph()
+        except Exception as error:
+            clearScreen()
+            print(error)
+            print('O VERTICE INFORMADO NAO TEM ARVORE GERADORA!')    
+        finally:
+            keepOn = input('\nDESEJA REALIZAR UMA NOVA EXECUCAO? DIGITE "1" PARA "SIM"\nR: ')
+            if keepOn != '1':
+                clearScreen()
+                return
+
 
 
 # DIJKSTRA
