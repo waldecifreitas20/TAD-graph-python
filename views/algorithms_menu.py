@@ -6,7 +6,7 @@ _THIN_BORDER = '---------------------------------------'
 
 def _default():
     print(_THICK_BORDER)
-    print('DEPENDENDO DO VERTICE INICIAL ESCOLHIDO\nO RESULTADO PODE SER DIFERENTE')
+    print('INDIQUE POR QUAL VERTICE INICIAR A EXECUCAO')
     print(_THICK_BORDER)
 
 
@@ -26,7 +26,10 @@ def strongerComponentsMenu():
 
 
 def shortestPathMenu():
-    _default()
+    print(_THICK_BORDER)
+    print('INDIQUE OS VERTICES ORIGEM E DESTINO')
+    print(_THICK_BORDER)
+
 
 
 def minimalSpanningTreeMenu():

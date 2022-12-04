@@ -22,7 +22,7 @@ while MENU_OPTION != 0:
         controller(view)  # Controlador de acoes da view selecionada
     else:
         print('ESCOLHA UMA OPCAO VALIDA! DE 0 ATE 8')
-
+    VIEWS.clearScreen()
 
 VIEWS.clearScreen()
 print('OBRIGADO!')

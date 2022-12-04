@@ -45,10 +45,9 @@ def getAlgorithmViewController(option):
 # DFS
 def classifyEdgesController(view): 
     graph = appData.getGraph()
-    dfs = DepthFirstSearch(graph)
     while True:
         clearScreen()
-        renderView(view)
+        dfs = DepthFirstSearch(graph)
         try:
             initialNode = int(input('VERTICE INICIAL: '))
             edgesTypes = dfs.getEdgesTypes(initialNode)
@@ -89,16 +88,18 @@ def hasCicleController(view):
     
 def topologicalSortingController(view): 
     graph = appData.getGraph()
-    dfs = DepthFirstSearch(graph)
     while True:
         clearScreen()
         renderView(view)
+        dfs = DepthFirstSearch(graph)
         try:
             initialNode = int(input('VERTICE INICIAL: '))
+
             topologicalSorting = dfs.getTopologicalSorting(initialNode)
             clearScreen()
+
             if len(topologicalSorting) > 0:
-                print(f'PARTIDO DO VERTICE {initialNode}, A CLASSIFICACAO DAS ARESTAS É ESTA:')
+                print(f'PARTIDO DO VERTICE {initialNode}, A ORDENACAO TOPOLOGICA EH:')
                 print('INICIO - ', end='')
                 for node in topologicalSorting:
                     print(f'{node} - ', end='')
@@ -116,13 +117,54 @@ def topologicalSortingController(view):
 
 def strongerComponentsController(view): 
     graph = appData.getGraph()
-    renderView(view)
-    input()
+    while True:
+        clearScreen()
+        renderView(view)
+        dfs = DepthFirstSearch(graph)
+        try:
+            initialNode = int(input('VERTICE INICIAL: '))
+            components = dfs.getStrengthComponents(initialNode)
+            clearScreen()
+            if len(components) > 0: 
+                print('COMPONENTES FORTEMENTES CONECTADOS ENCONTRADOS!')
+                for component in components:
+                    print(component)
+            else:
+                print('NENHUM COMPONENTE FORTEMENTE CONECTADO FOI ENCONTRADO!')
+
+        except:
+            clearScreen()
+            print('VERTICE INVALIDO!')    
+        finally:
+            keepOn = input('\nDESEJA REALIZAR UMA NOVA EXECUCAO? DIGITE "1" PARA "SIM"\nR: ')
+            if keepOn != '1':
+                clearScreen()
+                return
 
 # BFS
 def shortestPathController(view): 
     graph = appData.getGraph()
-    renderView(view)
+    while True:
+        clearScreen()
+        renderView(view)
+        bfs = BreadthFirstSearch(graph)
+        try:
+            originNode = int(input('ORIGEM: '))
+            destinyNode = int(input('DESTINO: '))
+            path = bfs.getPathBetween(originNode, destinyNode)
+            print(f'O CAMINHO ENTRE O VERTICE {originNode}, PARA {destinyNode}:')
+            print('INICIO - ', end='')
+            for node in path:
+                print(f'{node} - ', end='')
+            print('FIM')
+        except:
+            clearScreen()
+            print('NAO EXISTE CAMINHO ENTRE OS VERTICES INFORMADOS!')    
+        finally:
+            keepOn = input('\nDESEJA REALIZAR UMA NOVA EXECUCAO? DIGITE "1" PARA "SIM"\nR: ')
+            if keepOn != '1':
+                clearScreen()
+                return
 
 # PRIM
 def minimalSpanningTreeController(view): 
