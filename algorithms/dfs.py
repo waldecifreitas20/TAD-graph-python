@@ -98,7 +98,7 @@ class DepthFirstSearch:
 
     def getTopologicalSorting(self, initialNode=0):
         if self.hasCicle():
-            raise Exception('Graph must have no cicle')
+            raise Exception('NAO E POSSIVEL REALIZAR ORDENACAO TOPOLOGICA EM GRAFOS NAO DIRECIONADOS')
 
         self._initVariables()
 
