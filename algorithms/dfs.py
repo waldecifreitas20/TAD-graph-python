@@ -27,7 +27,7 @@ class DepthFirstSearch:
         self.ancestor.clear()
         self.topologicalSorting.clear()
 
-        for _ in range(self.graph.getNumberNodes()):
+        for _ in range(self.graph.length()):
             self.colors.append(WHITE)
             self.finalTime.append(_MAX_VALUE_)
             self.discoveryTime.append(_MAX_VALUE_)
@@ -39,7 +39,7 @@ class DepthFirstSearch:
         if self.colors[initialNode] == WHITE:
             self._classifyEdgesDFS(initialNode)
 
-        for node in range(self.graph.getNumberNodes()):
+        for node in range(self.graph.length()):
             if self.colors[node] == WHITE:
                 self._classifyEdgesDFS(node)
         return self.edgeTypes
@@ -105,7 +105,7 @@ class DepthFirstSearch:
         if self.colors[initialNode] == WHITE:
             self._getTopologicalSortingDFS(initialNode)
 
-        for node in range(self.graph.getNumberNodes()):
+        for node in range(self.graph.length()):
             if self.colors[node] == WHITE:
                 self._getTopologicalSortingDFS(node)
 

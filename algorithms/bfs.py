@@ -14,7 +14,7 @@ class BreadthFirstSearch:
               
 
     def _initVariables(self):
-        numberNodes = self.graph.getNumberNodes()
+        numberNodes = self.graph.length()
 
         self.runtime = 0
         self.visited.clear()

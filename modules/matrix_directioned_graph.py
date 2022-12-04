@@ -34,7 +34,7 @@ class DirectionedMatrixGraph(MatrixGraph):
         if not self.hasNode(value):
             raise Exception('VERTICE NAO FAZ PARTE DO GRAFO')
         
-        for i in range(self.getNumberNodes()):
+        for i in range(self.length()):
             if self.edges[i][value] != 0:
                 degree += 1
         return degree
@@ -44,17 +44,17 @@ class DirectionedMatrixGraph(MatrixGraph):
         if not self.hasNode(value):
             raise Exception('VERTICE NAO FAZ PARTE DO GRAFO')
 
-        for i in range(self.getNumberNodes()):
+        for i in range(self.length()):
             if self.edges[value][i] != 0:
                 degree += 1
         return degree
     
     def getTransposed(self):
-        numberNodes = self.getNumberNodes()
+        numberNodes = self.length()
         graph = DirectionedMatrixGraph(numberNodes)
 
-        for fromNode in range(self.getNumberNodes()):
-            for toNode in range(self.getNumberNodes()):
+        for fromNode in range(self.length()):
+            for toNode in range(self.length()):
                 if self.edges[fromNode][toNode] != 0:
                     graph.addEdge(toNode, fromNode)
             
