@@ -4,4 +4,4 @@ def _generateOptions(quantity):
 
 MAIN_MENU_OPTIONS = _generateOptions(10)
 
-GENERATE_GRAPH_MENU_OPTIONS = _generateOptions(5)
+GENERATE_GRAPH_MENU_OPTIONS = _generateOptions(8)
