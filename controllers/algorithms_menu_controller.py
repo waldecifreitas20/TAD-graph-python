@@ -152,6 +152,8 @@ def shortestPathController(view):
             originNode = int(input('ORIGEM: '))
             destinyNode = int(input('DESTINO: '))
             path = bfs.getPathBetween(originNode, destinyNode)
+            clearScreen()
+
             print(f'O CAMINHO ENTRE O VERTICE {originNode}, PARA {destinyNode}:')
             print('INICIO - ', end='')
             for node in path:
@@ -176,6 +178,7 @@ def minimalSpanningTreeController(view):
         try:
             originNode = int(input('ORIGEM: '))
             tree = prim.getMinimalSpanningTree(originNode)
+            clearScreen()
 
             print(f'ARVORE GERADORA MINIMA DO VERTICE {originNode}:')
             tree.printGraph()
@@ -194,4 +197,26 @@ def minimalSpanningTreeController(view):
 # DIJKSTRA
 def shortestPathToAllController(view): 
     graph = appData.getGraph()
-    renderView(view)
+    while True:
+        clearScreen()
+        renderView(view)
+        dijkstra = Dijkstra(graph)
+        try:
+            originNode = int(input('ORIGEM: '))
+            destinyNode = int(input('DESTINO: '))
+            shortestPath = dijkstra.getShortestPath(originNode, destinyNode)
+            clearScreen()
+            print(shortestPath)
+            print('INICIO - ', end='')
+            for node in shortestPath:
+                print(f'{node} - ', end='')
+            print('FIM')
+        except Exception as error:
+            clearScreen()
+            print(error)
+            print('OS VERTICES NAO SAO ALCANCAVEIS UM DO OUTRO!')    
+        finally:
+            keepOn = input('\nDESEJA REALIZAR UMA NOVA EXECUCAO? DIGITE "1" PARA "SIM"\nR: ')
+            if keepOn != '1':
+                clearScreen()
+                return
