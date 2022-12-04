@@ -172,7 +172,7 @@ class DepthFirstSearch:
  
 
     class EdgeType:
-        TREE = '_TREE_'
-        BACK = '_BACK_'
-        CROSS = '_CROSS_'
-        FORWARD = '_FORWARD_'
+        TREE = 'ARVORE'
+        BACK = 'RETORNO'
+        CROSS = 'CRUZAMENTO'
+        FORWARD = 'AVANCO'
